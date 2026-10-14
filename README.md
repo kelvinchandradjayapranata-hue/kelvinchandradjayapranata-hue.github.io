@@ -35,7 +35,9 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 ├── 404.html            Not-found page
 ├── assets/
 │   ├── css/style.css   Single stylesheet (design tokens, light + dark)
-│   └── img/favicon.svg SVG favicon
+│   └── img/
+│       ├── favicon.svg SVG favicon
+│       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
 ├── .gitignore          Excludes local tooling config
 ├── .nojekyll           Prevents Jekyll processing on GitHub Pages
 └── README.md           This file
@@ -101,7 +103,8 @@ git push
 ```
 
 `.gitignore` excludes `.claude/`, which holds machine-local tooling settings and must never be
-committed.
+committed, and `image/`, which holds the full-resolution source photos. Only the web-sized
+derivative in `assets/img/` is published.
 
 To confirm a deploy finished, check the Pages build status:
 

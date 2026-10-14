@@ -176,8 +176,28 @@ main { display: block; padding-block: 2.6rem 4rem; }
 
 /* --- Hero ---------------------------------------------------------------- */
 
-.hero { padding-block: 2.2rem 1rem; }
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: center;
+  padding-block: 2.2rem 1rem;
+}
 .hero h1 { margin-bottom: .35em; }
+
+/* The portrait sits beside the intro once there is room for both columns;
+   below that breakpoint the two rows simply stack. */
+@media (min-width: 48rem) {
+  .hero { grid-template-columns: minmax(0, 1fr) auto; }
+}
+
+.hero__photo {
+  width: clamp(9rem, 24vw, 14rem);
+  justify-self: start;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
 
 .eyebrow {
   font-size: .82rem;

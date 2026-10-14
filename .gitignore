@@ -15,3 +15,7 @@ desktop.ini
 *.local
 *.bak
 *.tmp
+
+# Unpublished source assets — full-resolution originals stay local and are never
+# committed. Only the web-sized derivatives in assets/img/ are published.
+image/
