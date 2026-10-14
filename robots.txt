@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Keep the repository's ignore file out of search results. This is a crawling
+# directive only, not an access control: the file stays publicly reachable.
+Disallow: /.gitignore
+
+Sitemap: https://kelvinchandradjayapranata-hue.github.io/sitemap.xml
