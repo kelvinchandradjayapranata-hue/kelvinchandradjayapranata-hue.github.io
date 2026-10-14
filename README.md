@@ -11,8 +11,16 @@ external fonts, and no third-party requests.**
 
 ## Status
 
-**Local only — not deployed.** This repository has not been initialised as a Git repository, and no
-GitHub repository or GitHub Pages site exists for it. Deployment requires separate authorisation.
+**Live.** The site is static HTML and CSS published through GitHub Pages, served from the root of
+the `main` branch. No build step or workflow runs on deploy — GitHub Pages serves exactly what is
+committed, and `.nojekyll` keeps it that way.
+
+| | |
+|---|---|
+| **Website** | https://kelvinchandradjayapranata-hue.github.io/ |
+| **Repository** | https://github.com/kelvinchandradjayapranata-hue/kelvinchandradjayapranata-hue.github.io |
+
+Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 
 ## Structure
 
@@ -70,10 +78,33 @@ repositories. The site deliberately:
 
 If you change content, keep to that policy: prefer a smaller true claim over a larger flattering one.
 
-## Deployment (not yet authorised)
+## Publishing updates
 
-For a user site at `https://<username>.github.io`, the GitHub repository must be named exactly
-`kelvinchandradjayapranata-hue.github.io`, with Pages served from the default branch root.
-`.nojekyll` is already in place.
+Edit the files in this folder, preview them locally, then commit and push. GitHub Pages rebuilds
+automatically from `main` — changes normally appear within a minute or two. There is no build step
+and nothing to compile.
 
-No `git init`, remote creation, push, or Pages configuration has been performed.
+```bash
+cd "D:\project\github.io website"
+
+# 1. Preview locally before publishing
+python -m http.server 8000        # then open http://localhost:8000
+
+# 2. Check what will be published
+git status --short
+git ls-files "*claude*"           # must print nothing
+
+# 3. Publish
+git add -A
+git commit -m "Update <what changed>"
+git push
+```
+
+`.gitignore` excludes `.claude/`, which holds machine-local tooling settings and must never be
+committed.
+
+To confirm a deploy finished, check the Pages build status:
+
+```bash
+gh api repos/kelvinchandradjayapranata-hue/kelvinchandradjayapranata-hue.github.io/pages --jq .status
+```
