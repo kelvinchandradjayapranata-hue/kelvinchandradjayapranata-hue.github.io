@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Interests — Kelvin Chandra Djayapranata</title>
+<meta name="description" content="Research interests of Kelvin Chandra Djayapranata: AI for Biotechnology, bioinformatics, protein structure prediction, and reliability evaluation of predicted structures.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Research Interests — Kelvin Chandra Djayapranata">
+<meta property="og:description" content="AI for Biotechnology, bioinformatics, protein structure prediction, and reliability evaluation of predicted structures.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">Kelvin Chandra Djayapranata</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+
+    <div class="prose">
+      <p class="eyebrow">Research Interests</p>
+      <h1>What I am working toward</h1>
+      <p class="lede">
+        These are the areas I am actively working in and building foundations for. They are
+        interests and directions, not a record of completed research.
+      </p>
+    </div>
+
+    <!-- 1 -->
+    <article class="prose">
+      <h2>AI for Biotechnology (AI4Bio)</h2>
+      <p>
+        Using machine learning and deep learning on biological research problems — from data
+        preparation through to modelling and evaluation. I use <em>AI4Bio</em> as an informal
+        umbrella term for this, rather than a formally standardised designation.
+      </p>
+      <p>
+        My interest here is deliberately bottom-up. Before a model is trained, the data itself has
+        to be trustworthy: its provenance, its column definitions, its units, and its exclusions.
+        Model performance is bounded by the data underneath it, so that is where I am starting.
+      </p>
+    </article>
+
+    <!-- 2 -->
+    <article class="prose">
+      <h2>Bioinformatics and Computational Biology</h2>
+      <p>
+        Representing, retrieving, and processing biological data programmatically: sequences and
+        annotations, standard file formats, structural data, and the tooling that connects them. I
+        work primarily in Python with Biopython, pandas, and NumPy.
+      </p>
+      <p>
+        A particular interest is the seam between biological data standards and what machine
+        learning pipelines actually need — the point where a format's guarantees stop and a
+        dataset's assumptions begin.
+      </p>
+    </article>
+
+    <!-- 3 -->
+    <article class="prose">
+      <h2>Protein Structure Prediction</h2>
+      <p>
+        How structural information is predicted and then represented as machine-readable features.
+        My current work uses AlphaFold models, both from the AlphaFold Database and single
+        predictions via the AlphaFold Server, as the source of structural data.
+      </p>
+      <p>
+        This includes the confidence measures that come attached to predicted structures:
+      </p>
+      <ul class="list-plain">
+        <li>
+          <strong>pLDDT</strong> — per-residue confidence in the local structure. Read per region
+          rather than as a global average, since an average hides disordered or uncertain segments.
+        </li>
+        <li>
+          <strong>PAE</strong> — an N&times;N matrix estimating the expected position error of one
+          residue if the structure is aligned on another; useful for judging relative placement and
+          domain packing.
+        </li>
+        <li>
+          <strong>pTM</strong> — a global confidence measure over the predicted fold.
+        </li>
+      </ul>
+    </article>
+
+    <!-- 4 -->
+    <article class="prose">
+      <h2>Reliability and Confidence Evaluation</h2>
+      <p>
+        Confidence scores like pLDDT and PAE are the de-facto indicators that practitioners read as
+        "model quality". The question I am building toward is the uncomfortable one underneath
+        them: <em>how far can those indicators actually be trusted, and where do they fail?</em>
+      </p>
+      <p>
+        A high-confidence prediction can still be wrong — pLDDT and PAE measure a model's internal
+        confidence, not biological truth. Verifying a structure requires real experiments:
+        X-ray crystallography, NMR, cryo-EM. The gap between a confident prediction and a measured
+        structure is where I think the most useful questions live.
+      </p>
+      <div class="panel">
+        <p class="mb-0">
+          <strong>Status of this direction.</strong> This is reading, preparation, and foundations
+          work. I have not completed or published a reliability audit, and I make no claim of
+          findings here.
+        </p>
+      </div>
+    </article>
+
+    <!-- cross-cutting -->
+    <article class="prose">
+      <h2>Reproducibility and data integrity</h2>
+      <p>
+        Not a separate research area so much as a requirement running through the others. In
+        practice, for me that means checksummed and frozen inputs, integrity tests that recompute
+        values from raw files, machine-readable schemas holding every column definition and unit,
+        and exclusions recorded one by one with reasons rather than applied silently.
+      </p>
+      <p>
+        The test is simple: if someone cloned the repository, could they reproduce the numbers and
+        understand why each one is what it is?
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="projects.html">See how this looks in practice</a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Kelvin Chandra Djayapranata &middot; Undergraduate student, Northwestern Polytechnical University (NPU/NWPU), Xi'an, China.</p>
+    <p class="small">Everything on this site describes public repositories. Nothing here is a publication, an award, or a validated biological result.</p>
+    <div class="footer-links">
+      <a href="https://github.com/kelvinchandradjayapranata-hue" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://cn.linkedin.com/in/kelvin-chandra-djaya-pranata-1abb1742a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

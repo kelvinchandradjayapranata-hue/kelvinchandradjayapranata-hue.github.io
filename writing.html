@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Writing — Kelvin Chandra Djayapranata</title>
+<meta name="description" content="Technical writing by Kelvin Chandra Djayapranata: a documented guide to Biopython's role in modern bioinformatics and AI4Bio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technical Writing — Kelvin Chandra Djayapranata">
+<meta property="og:description" content="A documented guide to Biopython's role in modern bioinformatics and AI4Bio.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">Kelvin Chandra Djayapranata</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="research.html">Research</a>
+      <a href="writing.html" aria-current="page">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+
+    <div class="prose">
+      <p class="eyebrow">Technical Writing</p>
+      <h1>Documentation and guides</h1>
+      <p class="lede">
+        Written work explaining the tools and concepts behind the research, with sources cited and
+        limits stated.
+      </p>
+    </div>
+
+    <article class="prose">
+      <h2>Why Biopython Matters in Modern Bioinformatics and AI4Bio</h2>
+
+      <div class="badge-row">
+        <span class="badge">Public</span>
+        <span class="badge badge--quiet">7 documents</span>
+        <span class="badge badge--quiet">CC BY 4.0</span>
+      </div>
+
+      <p>
+        A technical guide to what Biopython provides, where its limits lie, and how it fits into
+        computational biology and AI-for-bio workflows. It reviews Biopython as a domain-specific
+        Python library for biological data — sequences and annotations, common file formats,
+        database retrieval, structures, and phylogenetics.
+      </p>
+      <p>
+        The central point is a boundary that is easy to blur: Biopython is <strong>not an AI
+        model</strong> and does not train or run machine learning. In an AI4Bio workflow it helps
+        <em>upstream</em> — retrieving, parsing, representing, and preparing biological data before
+        modelling begins.
+      </p>
+
+      <h3>Contents</h3>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Documents in the Biopython technical guide</caption>
+          <thead>
+            <tr><th scope="col">Document</th><th scope="col">What it covers</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1. What Is Biopython?</td><td>Definition, provenance, module map, licensing, citation</td></tr>
+            <tr><td>2. Problems Biopython Solves</td><td>Capability inventory with format caveats and dependency classes</td></tr>
+            <tr><td>3. Biopython vs. Plain Python</td><td>Trade-offs between the library and hand-written code</td></tr>
+            <tr><td>4. Biopython in Modern Bioinformatics</td><td>Workflow role, interoperability, reproducibility</td></tr>
+            <tr><td>5. Biopython in AI4Bio</td><td>Pipeline fit — and where NumPy, pandas, PyTorch, and AlphaFold take over</td></tr>
+            <tr><td>6. Limitations and Alternatives</td><td>Boundaries, dependencies, alternatives, decision guidance</td></tr>
+            <tr><td>7. References</td><td>Annotated, verified source register with claim mapping</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What the guide is careful about</h3>
+      <ul class="list-plain">
+        <li>
+          <strong>It does not oversell the tool.</strong> Biopython is presented as a library with
+          documented boundaries — some features need external software or network services, and
+          specialised tasks such as large-scale genomics or model training have specialised tools.
+        </li>
+        <li>
+          <strong>It does not substitute for domain knowledge.</strong> The guide states plainly that
+          the library is not a replacement for biological validation.
+        </li>
+        <li>
+          <strong>Sources carry verification status.</strong> Claims map to a numbered source
+          register, with the verification status of each recorded.
+        </li>
+        <li>
+          <strong>It defines its own terms.</strong> "AI4Bio" is flagged as an informal umbrella
+          term rather than a standardised designation.
+        </li>
+      </ul>
+
+      <div class="panel">
+        <p class="mb-0">
+          <strong>Transparency notes.</strong> The hero image is an AI-generated illustration whose
+          embedded Content Credentials record the generating tool. That metadata was inspected but
+          <strong>not cryptographically validated</strong>, and stylised marks in the illustration
+          are not official logos. The documentation text and images are licensed CC BY 4.0 by the
+          copyright holder to the extent of the rights held — third-party material quoted in the
+          references remains under its own owners' rights.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://github.com/kelvinchandradjayapranata-hue/why-biopython-matters" target="_blank" rel="noopener noreferrer">Read on GitHub</a>
+      </div>
+    </article>
+
+    <hr>
+
+    <div class="prose">
+      <h2 class="mt-0">Research documentation</h2>
+      <p>
+        Alongside the guide above, my research repository keeps its own stage reports, dataset plan,
+        and machine-readable feature schema. Those are listed with the project rather than here,
+        since they document work in progress rather than standalone writing.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="projects.html">Go to Projects</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Kelvin Chandra Djayapranata &middot; Undergraduate student, Northwestern Polytechnical University (NPU/NWPU), Xi'an, China.</p>
+    <p class="small">Everything on this site describes public repositories. Nothing here is a publication, an award, or a validated biological result.</p>
+    <div class="footer-links">
+      <a href="https://github.com/kelvinchandradjayapranata-hue" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://cn.linkedin.com/in/kelvin-chandra-djaya-pranata-1abb1742a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

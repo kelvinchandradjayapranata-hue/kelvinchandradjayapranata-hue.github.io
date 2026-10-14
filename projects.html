@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Kelvin Chandra Djayapranata</title>
+<meta name="description" content="Research projects by Kelvin Chandra Djayapranata: ai-biotech, an early-stage AI4Bio pipeline for protein structure analysis and validated residue-level feature datasets.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects — Kelvin Chandra Djayapranata">
+<meta property="og:description" content="ai-biotech — an early-stage AI4Bio pipeline for protein structure analysis and validated residue-level feature datasets.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">Kelvin Chandra Djayapranata</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="research.html">Research</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+
+    <div class="prose">
+      <p class="eyebrow">Projects</p>
+      <h1>Research and portfolio work</h1>
+      <p class="lede">
+        Each entry states its current status as plainly as the repository does. Where a stage has
+        not started, it is listed as not started.
+      </p>
+    </div>
+
+    <!-- ================= ai-biotech ================= -->
+    <article class="prose">
+      <h2>ai-biotech</h2>
+
+      <div class="badge-row">
+        <span class="badge">Public</span>
+        <span class="badge badge--quiet">Python 3.12.10</span>
+        <span class="badge badge--quiet">Stages 1&ndash;6 complete</span>
+        <span class="badge badge--quiet">Stage 6 review pending</span>
+      </div>
+
+      <p>
+        An early-stage AI for Biotechnology (AI4Bio) research project in computational biology. It
+        builds a validated data pipeline that starts from protein sequences, uses AlphaFold
+        structure predictions, and ends in a reproducible, residue-level feature dataset — the
+        foundation for future AI-assisted biological research.
+      </p>
+      <p>
+        The stack is deliberately small and inspectable: Python, Biopython, pandas, NumPy, and
+        matplotlib, running on a standard machine with no GPU required.
+      </p>
+
+      <dl class="facts">
+        <dt>Repository</dt>
+        <dd><a href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech" target="_blank" rel="noopener noreferrer">github.com/kelvinchandradjayapranata-hue/ai-biotech</a></dd>
+
+        <dt>Status</dt>
+        <dd>Stages 1&ndash;6 complete &middot; Stage 6 review pending &middot; Stage 7 (machine learning) not started</dd>
+
+        <dt>Dataset</dt>
+        <dd>7 proteins &middot; 1,098 residues &times; 29 columns</dd>
+
+        <dt>Integrity tests</dt>
+        <dd>72 of 72 passing across four suites (20 + 12 + 16 + 24)</dd>
+
+        <dt>Data source</dt>
+        <dd>AlphaFold Database v6, plus an AlphaFold Server reference structure (ubiquitin, 76 aa)</dd>
+
+        <dt>Language</dt>
+        <dd>Python 3.12.10</dd>
+      </dl>
+
+      <h3>Pipeline stages</h3>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Pipeline stages, outputs, and verification status for ai-biotech</caption>
+          <thead>
+            <tr><th scope="col">Stage</th><th scope="col">Output</th><th scope="col">Verification</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Sequence analysis — ubiquitin, 76 aa</td><td>Reference input for Stages 2&ndash;3</td></tr>
+            <tr><td>2</td><td>Structure analysis — ubiquitin (AlphaFold Server), pLDDT / pTM</td><td>Analysis artifacts in <code>results/</code></td></tr>
+            <tr><td>3</td><td>Residue-level features — 76 residues &times; 28 columns</td><td>20/20 tests pass</td></tr>
+            <tr><td>4</td><td>Dataset manifest — 7 candidate proteins, 6 functional categories</td><td>12/12 tests pass</td></tr>
+            <tr><td>5</td><td>Controlled download + validation — 14 files (7 CIF + 7 PAE JSON, AFDB v6)</td><td>16/16 tests pass</td></tr>
+            <tr><td>6</td><td>Multi-protein dataset — 1,098 residues &times; 29 columns</td><td>24/24 tests pass — review pending</td></tr>
+            <tr><td>7</td><td>Machine-learning experiments</td><td>Not started</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What this project is not</h3>
+      <p>
+        Stated plainly, because the distinction matters: this is currently a protein structure
+        analysis and dataset engineering project. It is <strong>not</strong> a finished
+        drug-discovery system. Specifically, none of the following exist yet, and none are claimed:
+      </p>
+      <ul class="list-plain">
+        <li>No trained predictive model — no training, no train/test split, no evaluation metrics</li>
+        <li>No molecular docking, molecular dynamics, or compound screening</li>
+        <li>No wet-lab or experimental validation</li>
+        <li>No comparison against experimental (PDB) structures — the dataset stores predictions only</li>
+        <li>No biological hypothesis, label, or conclusion drawn from the predictions</li>
+      </ul>
+
+      <h3>Known limitations</h3>
+      <ul class="list-plain">
+        <li>
+          <strong>Small, narrow dataset.</strong> Seven single-chain proteins (five human, two
+          non-human) form a pipeline-validation set — not a basis for biological generalisation.
+          Residues within one protein are strongly correlated, so 1,098 rows are not 1,098
+          independent samples.
+        </li>
+        <li>
+          <strong>Prediction-only ground truth.</strong> The dataset holds AlphaFold predictions
+          with no attached experimental reference structures.
+        </li>
+        <li>
+          <strong>Single-chain only.</strong> No complexes, no ligands, no post-translational
+          modifications.
+        </li>
+        <li>
+          <strong>Two columns excluded by design.</strong> The Stage 3 schema includes
+          <code>contact_prob_sum</code> and <code>n_high_conf_contacts</code>, which depend on a
+          contact-probability matrix that the public AlphaFold DB downloads do not provide. Both
+          columns were excluded rather than imputed or approximated, and the exclusion is documented
+          in the dataset schema.
+        </li>
+      </ul>
+
+      <div class="panel">
+        <p class="mb-0">
+          <strong>Note on confidence scores.</strong> pLDDT, PAE, and pTM measure a model's internal
+          confidence — not biological truth. A high-confidence prediction can still be wrong, and
+          verifying a structure requires real experiments such as X-ray crystallography, NMR, or
+          cryo-EM. Nothing in this project should be read as experimentally validated.
+        </p>
+      </div>
+
+      <p class="small muted">
+        The repository's own code does not declare a licence yet. Structure predictions come from
+        the <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener noreferrer">AlphaFold
+        Protein Structure Database</a> (v6), released under CC BY 4.0, with attribution to EMBL-EBI,
+        Google DeepMind, and UniProt.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech" target="_blank" rel="noopener noreferrer">View repository on GitHub</a>
+      </div>
+    </article>
+
+    <hr>
+
+    <div class="prose">
+      <h2 class="mt-0">Technical writing</h2>
+      <p>
+        My documentation and technical guides live on a separate page, since they are written work
+        rather than research projects.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="writing.html">Read the technical writing</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Kelvin Chandra Djayapranata &middot; Undergraduate student, Northwestern Polytechnical University (NPU/NWPU), Xi'an, China.</p>
+    <p class="small">Everything on this site describes public repositories. Nothing here is a publication, an award, or a validated biological result.</p>
+    <div class="footer-links">
+      <a href="https://github.com/kelvinchandradjayapranata-hue" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://cn.linkedin.com/in/kelvin-chandra-djaya-pranata-1abb1742a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

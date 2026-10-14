@@ -1,0 +1,17 @@
+# Local tooling configuration — never published to the website or the repository.
+# Contains machine-local MCP settings.
+.claude/
+
+# Operating system and editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+
+# Local scratch files
+*.local
+*.bak
+*.tmp
