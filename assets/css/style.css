@@ -176,24 +176,26 @@ main { display: block; padding-block: 2.6rem 4rem; }
 
 /* --- Hero ---------------------------------------------------------------- */
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 4vw, 2.75rem);
-  align-items: center;
-  padding-block: 2.2rem 1rem;
-}
-.hero h1 { margin-bottom: .35em; }
+.hero { padding-block: 2.2rem 1rem; }
 
-/* The portrait sits beside the intro once there is room for both columns;
-   below that breakpoint the two rows simply stack. */
-@media (min-width: 48rem) {
-  .hero { grid-template-columns: minmax(0, 1fr) auto; }
+/* Name and portrait share a single row. The portrait stays small so the name
+   remains the dominant element; the name is allowed to wrap to several lines
+   rather than push the photo onto its own row. */
+.hero__name {
+  display: flex;
+  align-items: center;
+  gap: clamp(.7rem, 2.2vw, 1.25rem);
+  margin-bottom: .9em;
+}
+.hero__name h1 {
+  min-width: 0;
+  margin-bottom: 0;
 }
 
 .hero__photo {
-  width: clamp(9rem, 24vw, 14rem);
-  justify-self: start;
+  flex: 0 0 auto;
+  width: auto;
+  height: clamp(3.25rem, 6vw, 4.5rem);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
