@@ -4,8 +4,8 @@ Static academic portfolio site for **Kelvin Chandra Djayapranata** — undergrad
 Northwestern Polytechnical University (NPU/NWPU), Xi'an, China — covering AI for Biotechnology
 (AI4Bio), computational biology, and protein structure analysis.
 
-Built as plain HTML and CSS for GitHub Pages. **No frameworks, no build step, no JavaScript, no
-external fonts, and no third-party requests.**
+Built as plain HTML, CSS, and one small self-hosted WebGL script for GitHub Pages. **No frameworks,
+no build step, no external fonts, and no third-party requests.**
 
 ---
 
@@ -35,6 +35,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 ├── 404.html            Not-found page
 ├── assets/
 │   ├── css/style.css   Single stylesheet (design tokens, light + dark)
+│   ├── js/hero-voxel-forest.js  Optional homepage WebGL voxel forest
 │   └── img/
 │       ├── favicon.svg SVG favicon
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
@@ -60,8 +61,9 @@ any directory, subpath, or host without modification.
 ## Design notes
 
 - **One stylesheet.** `assets/css/style.css` holds all design tokens and components.
-- **No JavaScript.** Navigation wraps responsively instead of using a hamburger menu, so it works
-  even with scripting disabled.
+- **JavaScript is optional.** Navigation wraps responsively instead of using a hamburger menu, so
+  all pages work with scripting disabled. The homepage hero adds a small, self-hosted WebGL scene
+  when available and falls back to a CSS gradient otherwise.
 - **Dark mode** follows the operating system via `prefers-color-scheme` — no toggle, no storage.
 - **Accessibility.** Skip link, semantic landmarks, `aria-current` on the active nav item, visible
   focus outlines, and text contrast checked in both themes.

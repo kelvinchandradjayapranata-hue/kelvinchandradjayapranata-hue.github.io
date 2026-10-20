@@ -17,6 +17,7 @@
 <meta name="twitter:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/hero-voxel-forest.js" defer></script>
 </head>
 <body>
 
@@ -40,27 +41,26 @@
   <div class="container">
 
     <section class="hero">
-      <p class="eyebrow">AI for Biotechnology (AI4Bio) &middot; Computational Biology</p>
-
-      <div class="hero__name">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="eyebrow">AI for Biotechnology (AI4Bio) &middot; Computational Biology</p>
         <h1>Kelvin Chandra Djayapranata</h1>
-        <img class="hero__photo"
-             src="assets/img/profile.jpg"
-             alt="Portrait photograph of Kelvin Chandra Djayapranata"
-             width="560" height="815"
-             decoding="async">
+        <p class="lede">
+          Undergraduate student at Northwestern Polytechnical University (NPU/NWPU) in Xi'an, China.
+          I work on the data side of AI for biotechnology: protein structure analysis, residue-level
+          feature extraction, and building validated, reproducible datasets from predicted structures.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="projects.html">View projects</a>
+          <a class="btn" href="about.html">About me</a>
+        </div>
       </div>
 
-      <p class="lede">
-        Undergraduate student at Northwestern Polytechnical University (NPU/NWPU) in Xi'an, China.
-        I work on the data side of AI for biotechnology: protein structure analysis, residue-level
-        feature extraction, and building validated, reproducible datasets from predicted structures.
-      </p>
-
-      <div class="btn-row">
-        <a class="btn btn--primary" href="projects.html">View projects</a>
-        <a class="btn" href="about.html">About me</a>
-      </div>
+      <img class="hero__photo"
+           src="assets/img/profile.jpg"
+           alt="Portrait photograph of Kelvin Chandra Djayapranata"
+           width="560" height="815"
+           decoding="async">
     </section>
 
     <section>
