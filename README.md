@@ -4,8 +4,8 @@ Static academic portfolio site for **Kelvin Chandra Djayapranata** — undergrad
 Northwestern Polytechnical University (NPU/NWPU), Xi'an, China — covering AI for Biotechnology
 (AI4Bio), computational biology, and protein structure analysis.
 
-Built as plain HTML, CSS, and one small self-hosted WebGL script for GitHub Pages. **No frameworks,
-no build step, no external fonts, and no third-party requests.**
+Built as plain HTML, CSS, and a few small self-hosted JavaScript files for GitHub Pages. **No
+frameworks, no build step, no external fonts, and no third-party requests.**
 
 ---
 
@@ -37,6 +37,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── css/style.css   Single stylesheet (design tokens, light + dark)
 │   ├── js/hero-voxel-forest.js  Optional homepage WebGL voxel forest
 │   ├── js/wall-clocks.js        Homepage wall clocks for Xi'an and WIB
+│   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
 │   └── img/
 │       ├── favicon.svg SVG favicon
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
@@ -68,6 +69,10 @@ any directory, subpath, or host without modification.
   live wall clocks (Xi'an and WIB) at the top-right outside the hero frame — in the outer right
   margin on wide screens, just above the hero on narrower ones — each with a digital readout;
   without scripting the hands rest at 10:10.
+- **Site guide.** A 56 px launcher in the bottom-right corner opens a fixed-answer guide. Every
+  reply is a static string written from these public pages and matched in the browser — no API, no
+  network request, no storage. The launcher starts hidden and is revealed only when
+  `site-guide.js` runs; the panel opens on demand. Without scripting, no launcher appears.
 - **Dark mode** follows the operating system via `prefers-color-scheme` — no toggle, no storage.
 - **Accessibility.** Skip link, semantic landmarks, `aria-current` on the active nav item, visible
   focus outlines, and text contrast checked in both themes.
@@ -83,6 +88,8 @@ repositories. The site deliberately:
 - Does **not** claim publications, awards, research positions, or completed results.
 - States explicitly what is unfinished — including that no model has been trained and no
   experimental validation exists.
+- Keeps every site-guide reply traceable to a public page; no reply may invent a credential,
+  result, or contact route.
 
 If you change content, keep to that policy: prefer a smaller true claim over a larger flattering one.
 

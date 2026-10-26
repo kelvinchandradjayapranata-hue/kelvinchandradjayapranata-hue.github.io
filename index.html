@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/hero-voxel-forest.js" defer></script>
 <script src="assets/js/wall-clocks.js" defer></script>
+<script src="assets/js/site-guide.js" defer></script>
 </head>
 <body>
 
@@ -214,6 +215,58 @@
     </div>
   </div>
 </footer>
+
+<!-- Fixed-answer site guide. The launcher and panel stay hidden until
+     site-guide.js runs, so nothing dead appears without scripting. -->
+<div class="site-guide" data-site-guide>
+
+  <button class="site-guide__launcher" type="button" data-site-guide-launcher
+          aria-expanded="false" aria-controls="site-guide-panel" hidden>
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true" focusable="false">
+      <path d="M21 14.5a3.5 3.5 0 0 1-3.5 3.5H9l-4.5 3v-4.2A3.5 3.5 0 0 1 3 14.5v-7A3.5 3.5 0 0 1 6.5 4h11A3.5 3.5 0 0 1 21 7.5Z"/>
+      <path d="M7.5 8.5h9M7.5 12h6"/>
+    </svg>
+    <span class="visually-hidden">Open site guide</span>
+  </button>
+
+  <section class="site-guide__panel" id="site-guide-panel" data-site-guide-panel
+           role="dialog" aria-modal="false" aria-labelledby="site-guide-title" hidden>
+    <header class="site-guide__header">
+      <div>
+        <h2 class="site-guide__title" id="site-guide-title">Site guide</h2>
+        <p class="site-guide__subtitle">Answers from this site's public pages</p>
+      </div>
+      <button class="site-guide__close" type="button" data-site-guide-close aria-label="Close site guide">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round"
+             aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="site-guide__log" data-site-guide-log role="log" aria-live="polite"></div>
+
+    <div class="site-guide__chips" data-site-guide-chips role="group" aria-label="Suggested questions">
+      <button class="site-guide__chip" type="button" data-site-guide-question="Who is Kelvin?">About</button>
+      <button class="site-guide__chip" type="button" data-site-guide-question="What is Kelvin working on now?">Current work</button>
+      <button class="site-guide__chip" type="button" data-site-guide-question="What projects are on this site?">Projects</button>
+      <button class="site-guide__chip" type="button" data-site-guide-question="How can I get in touch?">Contact</button>
+    </div>
+
+    <form class="site-guide__form" data-site-guide-form>
+      <label class="visually-hidden" for="site-guide-input">Ask about this site</label>
+      <input class="site-guide__input" id="site-guide-input" data-site-guide-input
+             type="text" autocomplete="off" placeholder="Ask about this site..." maxlength="300">
+      <button class="site-guide__send" type="submit">Send</button>
+    </form>
+
+    <p class="site-guide__note">Public pages only. No account, no tracking.</p>
+  </section>
+
+</div>
 
 </body>
 </html>
