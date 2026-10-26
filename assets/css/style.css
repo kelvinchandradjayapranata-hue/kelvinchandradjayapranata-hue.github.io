@@ -193,6 +193,20 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   .site-nav a[aria-current="page"] { color: var(--accent); }
 }
 
+/* Keep the seven links in even rows once the nav drops below the brand. */
+@media (max-width: 34rem) {
+  .site-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .25rem;
+    width: 100%;
+  }
+  .site-nav a {
+    padding-inline: .4rem;
+    text-align: center;
+  }
+}
+
 /* --- Hero ---------------------------------------------------------------- */
 
 .hero {
@@ -650,6 +664,57 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 
 .card__title { font-weight: 650; font-size: 1rem; margin: 0; }
 .card__desc  { font-size: .92rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+/* --- Gallery ------------------------------------------------------------- */
+
+/* One frame, always three columns. The source images are cropped to 4:3 so
+   every row lines up even when captions wrap. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .7rem;
+  margin-top: 1.6rem;
+  padding: .7rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.gallery__item { margin: 0; min-width: 0; }
+
+.gallery__link {
+  display: block;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--surface-2);
+}
+
+.gallery__link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: opacity .15s ease;
+}
+
+.gallery__link:hover img { opacity: .9; }
+
+.gallery__item figcaption {
+  margin-top: .4rem;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 34rem) {
+  .gallery { gap: .4rem; padding: .4rem; }
+  .gallery__item figcaption { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__link img { transition: none; }
+}
 
 /* --- Panel --------------------------------------------------------------- */
 

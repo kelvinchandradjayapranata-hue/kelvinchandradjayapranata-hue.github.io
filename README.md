@@ -31,6 +31,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 ├── projects.html       ai-biotech — status, pipeline stages, limitations
 ├── research.html       Research interests and directions
 ├── writing.html        Technical writing — Biopython guide
+├── gallery.html        Gallery — laboratory and everyday photographs
 ├── contact.html        GitHub and LinkedIn
 ├── 404.html            Not-found page
 ├── assets/
@@ -41,6 +42,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
 │   └── img/
 │       ├── favicon.svg SVG favicon
+│       ├── gallery/    Six 1000×750 gallery images (metadata stripped)
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
 ├── .gitignore          Excludes local tooling config
 ├── .nojekyll           Prevents Jekyll processing on GitHub Pages
@@ -75,6 +77,10 @@ any directory, subpath, or host without modification.
   days to 17 January 2027 in Xi'an time (UTC+8) and updates at Xi'an midnight. Without scripting
   the date remains visible and the day count stays as a placeholder. No network, storage, or
   third-party code.
+- **Gallery.** A separate `gallery.html` page shows six photographs in one frame split into three
+  columns at every width; captions hide on narrow screens and each frame links to the full-size
+  image in a new tab. The full-resolution source photos stay in the local, git-ignored `image/`
+  folder; only 1000×750 derivatives with metadata stripped are published. CSS only — no script.
 - **Hero message.** A thin "Miss u mom" strip runs along the inside bottom edge of the hero;
   hovering or focusing it pauses the motion, and `prefers-reduced-motion` shows a static centred
   line. CSS only — no new script or request.
