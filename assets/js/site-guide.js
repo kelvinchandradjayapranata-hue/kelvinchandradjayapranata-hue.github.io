@@ -37,19 +37,20 @@
   var FAQ = [
     {
       keys: ["current", "currently", "now", "working", "work", "building", "build",
-             "stage", "stages", "stage 6", "stage 7", "status", "progress",
-             "complete", "completed", "finished", "review", "pending",
-             "dataset", "data set", "proteins", "protein", "residues", "residue",
-             "integrity", "checks", "ai", "ai4bio", "ai biotech",
-             "machine learning"],
-      answer: "Kelvin is building <strong>ai-biotech</strong>, an early-stage AI4Bio project. Stages 1–6 are complete, with the Stage 6 review still pending; Stage 7 (machine learning) has not started. The dataset holds <strong>7 proteins</strong> and <strong>1,098 residues × 29 columns</strong>, with 72/72 integrity checks passing. Details: <a href=\"projects.html\">Projects</a>."
+             "stage", "stages", "stage 6", "stage 7", "stage 8", "stage 9",
+             "stage 10", "stage 11", "status", "progress", "complete", "completed",
+             "finished", "review", "pending", "dataset", "data set", "proteins",
+             "protein", "residues", "residue", "integrity", "checks", "ai",
+             "ai4bio", "ai biotech", "machine learning", "model", "models",
+             "lightgbm", "golden", "benchmark", "calibration", "external validation"],
+      answer: "Kelvin is building <strong>ai-biotech</strong>, an AI4Bio project. Stages 1–11 are complete and the Stage 8.2 benchmark is locked. The latest cleaned dataset has <strong>102 proteins</strong>, <strong>55,503 residues</strong>, and <strong>955 positive residues</strong> (1.72%). A selected LightGBM baseline and inference CLI exist, but all reported metrics are internal leave-one-protein-out results — <strong>no external validation has been run</strong>. Base extraction checks remain 72/72, and later stages were audited. Details: <a href=\"projects.html\">Projects</a>."
     },
     {
       keys: ["project", "projects", "projects on this site",
              "projects are on this site", "repo", "repos", "repository",
              "repositories", "code", "source code", "built",
              "what has he built", "work sample", "portfolio"],
-      answer: "The public work is <strong>ai-biotech</strong> — an early-stage AI4Bio pipeline for protein structure analysis — and <strong>why-biopython-matters</strong>, a technical guide to Biopython. The site states what is unfinished as well as what is finished. See <a href=\"projects.html\">Projects</a> and <a href=\"writing.html\">Writing</a>."
+      answer: "The public work is <strong>ai-biotech</strong> — an AI4Bio pipeline for protein structure analysis that now includes an audited 102-protein dataset, a frozen benchmark, an internal LightGBM baseline, and a runnable inference CLI — and <strong>why-biopython-matters</strong>, a technical guide to Biopython. The site states what is unfinished as well as what is finished. See <a href=\"projects.html\">Projects</a> and <a href=\"writing.html\">Writing</a>."
     },
     {
       keys: ["research", "interests", "interest", "directions", "direction",
@@ -78,7 +79,7 @@
              "program", "programme", "year", "study", "studying", "school", "name",
              "china", "xi an", "xian", "where is xi an", "what is your name",
              "who is kelvin", "phd", "master", "masters"],
-      answer: "Kelvin Chandra Djayapranata is an undergraduate student at Northwestern Polytechnical University (NPU/NWPU) in Xi'an, China. He works on the data side of AI for Biotechnology (AI4Bio): protein sequence and structure analysis, residue-level feature extraction, and validated, reproducible datasets from predicted structures. The site does not list his program, year of study, honours, or awards. See <a href=\"about.html\">About</a>."
+      answer: "Kelvin Chandra Djayapranata is an undergraduate student at Northwestern Polytechnical University (NPU/NWPU) in Xi'an, China. He works on the data and evaluation side of AI for Biotechnology (AI4Bio): protein sequence and structure analysis, residue-level feature extraction, validated, reproducible datasets from predicted structures, and protein-level internal evaluation. The site does not list his program, year of study, honours, or awards. See <a href=\"about.html\">About</a>."
     },
     {
       keys: ["publication", "publications", "paper", "papers", "award", "awards",
@@ -88,8 +89,9 @@
              "thesis", "achievement", "achievements", "unfinished", "no model",
              "no results", "no publications", "limitation", "limitations", "limits",
              "not claimed", "what is not claimed", "project limitations",
-             "dataset limitations"],
-      answer: "The site does not claim publications, awards, research positions, or validated biological results. <strong>ai-biotech</strong> is early-stage: no model has been trained, and no wet-lab or experimental validation exists. See <a href=\"projects.html\">Projects</a> for the full list of what is not claimed."
+             "dataset limitations", "model artifact", "deployment", "generalizable",
+             "generalization", "external validation", "wet lab", "wet-lab"],
+      answer: "The site does not claim publications, awards, research positions, or validated biological results. <strong>ai-biotech</strong> now has an internally evaluated LightGBM baseline and a runnable model artifact, but no external validation, no generalizable predictive model, and no wet-lab or experimental validation. The 0.5 threshold is a display convention, not a validated cutoff. See <a href=\"projects.html\">Projects</a> for the full list of what is not claimed."
     },
     {
       keys: ["clock", "clocks", "time", "times", "what time", "local time",

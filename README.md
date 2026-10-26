@@ -28,7 +28,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 .
 ├── index.html          Home — profile summary, current work, navigation
 ├── about.html          Academic background, focus, working approach
-├── projects.html       ai-biotech — status, pipeline stages, limitations
+├── projects.html       ai-biotech — completed work, internal results, limitations
 ├── research.html       Research interests and directions
 ├── writing.html        Technical writing — Biopython guide
 ├── gallery.html        Gallery — laboratory and everyday photographs
@@ -100,9 +100,11 @@ repositories. The site deliberately:
 
 - Links only the two verified public repositories (`ai-biotech` and `why-biopython-matters`).
 - Does **not** publish a personal email address or any sensitive contact detail.
-- Does **not** claim publications, awards, research positions, or completed results.
-- States explicitly what is unfinished — including that no model has been trained and no
-  experimental validation exists.
+- Does **not** claim publications, awards, research positions, or validated biological results.
+- Distinguishes internal cross-validation from external validation; no model metric is presented
+  as biological validation.
+- States explicitly what is unfinished — including that the LightGBM baseline has no external
+  validation and that no generalizable predictive model or biological finding exists.
 - Keeps every site-guide reply traceable to a public page; no reply may invent a credential,
   result, or contact route.
 

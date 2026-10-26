@@ -140,8 +140,9 @@
         <h1>Kelvin Chandra Djayapranata</h1>
         <p class="lede">
           Undergraduate student at Northwestern Polytechnical University (NPU/NWPU) in Xi'an, China.
-          I work on the data side of AI for biotechnology: protein structure analysis, residue-level
-          feature extraction, and building validated, reproducible datasets from predicted structures.
+          I work on the data and evaluation side of AI for biotechnology: protein structure
+          analysis, residue-level feature extraction, and validated, reproducible datasets and
+          internal baselines built from predicted structures.
         </p>
         <div class="hero__actions">
           <img class="hero__photo"
@@ -173,12 +174,16 @@
         <ul class="list-plain mb-0">
           <li>
             Building <strong>ai-biotech</strong>, an early-stage AI4Bio research project —
-            Stages 1&ndash;6 complete, Stage 7 (machine learning) not yet started.
+            Stages 1&ndash;11 complete and the Stage 8.2 benchmark locked.
           </li>
           <li>
-            The project's dataset currently holds <strong>7 proteins</strong> and
-            <strong>1,098 residues &times; 29 columns</strong>, with <strong>72 of 72</strong>
-            integrity checks passing.
+            The latest cleaned dataset holds <strong>102 proteins</strong>,
+            <strong>55,503 residues</strong>, and <strong>955 positive residues</strong> (1.72%),
+            with zero missing structural values.
+          </li>
+          <li>
+            A selected LightGBM baseline and a runnable inference CLI now exist. Evaluation is
+            internal (leave-one-protein-out); <strong>no external validation has been run</strong>.
           </li>
           <li>
             Reading and writing about Biopython's role in modern bioinformatics and AI4Bio.

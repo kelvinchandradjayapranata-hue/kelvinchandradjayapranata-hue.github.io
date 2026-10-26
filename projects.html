@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects — Kelvin Chandra Djayapranata</title>
-<meta name="description" content="Research and portfolio work by Kelvin Chandra Djayapranata, including ai-biotech, an early-stage AI4Bio pipeline for protein structure analysis.">
+<meta name="description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
 <link rel="canonical" href="https://kelvinchandradjayapranata-hue.github.io/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Projects — Kelvin Chandra Djayapranata">
-<meta property="og:description" content="Research and portfolio work by Kelvin Chandra Djayapranata, including ai-biotech, an early-stage AI4Bio pipeline for protein structure analysis.">
+<meta property="og:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
 <meta property="og:url" content="https://kelvinchandradjayapranata-hue.github.io/projects.html">
 <meta property="og:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects — Kelvin Chandra Djayapranata">
-<meta name="twitter:description" content="Research and portfolio work by Kelvin Chandra Djayapranata, including ai-biotech, an early-stage AI4Bio pipeline for protein structure analysis.">
+<meta name="twitter:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
 <meta name="twitter:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -44,8 +44,8 @@
       <p class="eyebrow">Projects</p>
       <h1>Research and portfolio work</h1>
       <p class="lede">
-        Each entry states its current status as plainly as the repository does. Where a stage has
-        not started, it is listed as not started.
+        Each entry states its current status as plainly as the repository does — what has been
+        built, what the internal numbers mean, and what remains unvalidated.
       </p>
     </div>
 
@@ -55,20 +55,24 @@
 
       <div class="badge-row">
         <span class="badge">Public</span>
-        <span class="badge badge--quiet">Python 3.12.10</span>
-        <span class="badge badge--quiet">Stages 1&ndash;6 complete</span>
-        <span class="badge badge--quiet">Stage 6 review pending</span>
+        <span class="badge badge--quiet">Stages 1&ndash;11 complete</span>
+        <span class="badge badge--quiet">Stage 8.2 benchmark locked</span>
+        <span class="badge badge--quiet">No external validation</span>
       </div>
 
       <p>
         An early-stage AI for Biotechnology (AI4Bio) research project in computational biology. It
-        builds a validated data pipeline that starts from protein sequences, uses AlphaFold
-        structure predictions, and ends in a reproducible, residue-level feature dataset — the
-        foundation for future AI-assisted biological research.
+        starts from protein sequences and AlphaFold structures, extracts documented residue-level
+        features, and carries the result through an audited dataset, a frozen benchmark, an
+        internally evaluated LightGBM baseline, and a runnable inference CLI. The emphasis is on
+        data provenance, reproducibility, and clearly stated limits — not on claiming biological
+        results.
       </p>
       <p>
-        The stack is deliberately small and inspectable: Python, Biopython, pandas, NumPy, and
-        matplotlib, running on a standard machine with no GPU required.
+        The current benchmark uses a concrete residue-level target: whether a residue is annotated
+        as a <strong>UniProt active or binding site</strong> (A+B). The stack is deliberately small
+        and inspectable: Python, Biopython, pandas, NumPy, matplotlib, scikit-learn, XGBoost,
+        LightGBM, and SciPy. Training and evaluation run on a standard machine without a GPU.
       </p>
 
       <dl class="facts">
@@ -76,13 +80,19 @@
         <dd><a href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech" target="_blank" rel="noopener noreferrer">github.com/kelvinchandradjayapranata-hue/ai-biotech</a></dd>
 
         <dt>Status</dt>
-        <dd>Stages 1&ndash;6 complete &middot; Stage 6 review pending &middot; Stage 7 (machine learning) not started</dd>
+        <dd>Stages 1&ndash;11 complete &middot; Stage 8.2 benchmark locked &middot; next gate: external validation (not started)</dd>
 
-        <dt>Dataset</dt>
-        <dd>7 proteins &middot; 1,098 residues &times; 29 columns</dd>
+        <dt>Latest dataset</dt>
+        <dd>102 proteins &middot; 55,503 residues &middot; 955 positives (1.72%) &middot; zero missing structural values</dd>
 
-        <dt>Integrity tests</dt>
-        <dd>72 of 72 passing across four suites (20 + 12 + 16 + 24)</dd>
+        <dt>Model</dt>
+        <dd>Golden LightGBM <code>lgbm__032c38ffe37f</code> &middot; sigmoid calibrator &middot; joblib artifact + <code>predict.py</code> CLI</dd>
+
+        <dt>Evaluation</dt>
+        <dd>102-fold leave-one-protein-out CV &middot; 78 evaluable folds &middot; 24 zero-positive proteins &middot; internal only</dd>
+
+        <dt>Base checks</dt>
+        <dd>72 of 72 passing across four suites (20 + 12 + 16 + 24), plus later stage audits</dd>
 
         <dt>Data source</dt>
         <dd>AlphaFold Database v6, plus an AlphaFold Server reference structure (ubiquitin, 76 aa)</dd>
@@ -91,61 +101,174 @@
         <dd>Python 3.12.10</dd>
       </dl>
 
-      <h3>Pipeline stages</h3>
+      <h3>What has been built</h3>
       <div class="table-wrap">
         <table>
-          <caption class="visually-hidden">Pipeline stages, outputs, and verification status for ai-biotech</caption>
+          <caption class="visually-hidden">Completed ai-biotech work, stage groups, and verification status</caption>
           <thead>
-            <tr><th scope="col">Stage</th><th scope="col">Output</th><th scope="col">Verification</th></tr>
+            <tr><th scope="col">Area</th><th scope="col">What exists</th><th scope="col">Status</th></tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td>Sequence analysis — ubiquitin, 76 aa</td><td>Reference input for Stages 2&ndash;3</td></tr>
-            <tr><td>2</td><td>Structure analysis — ubiquitin (AlphaFold Server), pLDDT / pTM</td><td>Analysis artifacts in <code>results/</code></td></tr>
-            <tr><td>3</td><td>Residue-level features — 76 residues &times; 28 columns</td><td>20/20 tests pass</td></tr>
-            <tr><td>4</td><td>Dataset manifest — 7 candidate proteins, 6 functional categories</td><td>12/12 tests pass</td></tr>
-            <tr><td>5</td><td>Controlled download + validation — 14 files (7 CIF + 7 PAE JSON, AFDB v6)</td><td>16/16 tests pass</td></tr>
-            <tr><td>6</td><td>Multi-protein dataset — 1,098 residues &times; 29 columns</td><td>24/24 tests pass — review pending</td></tr>
-            <tr><td>7</td><td>Machine-learning experiments</td><td>Not started</td></tr>
+            <tr>
+              <td><strong>Data foundation</strong><br>Stages 1&ndash;6</td>
+              <td>Sequence and structure analysis of ubiquitin; residue-level feature schema; controlled AFDB download; a 7-protein, 1,098-residue dataset.</td>
+              <td>Complete &middot; 72/72 checks</td>
+            </tr>
+            <tr>
+              <td><strong>Frozen benchmark</strong><br>Stages 7&ndash;8.2</td>
+              <td>1,098 &times; 27 benchmark; A+B labels from UniProt active and binding sites; 46 positives; 7-fold LOGO; reproducible XGBoost and Random Forest baseline.</td>
+              <td>Locked</td>
+            </tr>
+            <tr>
+              <td><strong>Audited expansion</strong><br>Stages 9.2&ndash;9.5</td>
+              <td>Features realigned to the frozen definitions; fresh AFDB and UniProt audits; expansion to 103 proteins and 59,188 residues; P11532 excluded; clean 102-protein set at 55,503 rows and 955 positives.</td>
+              <td>Audited &middot; 0 missing values</td>
+            </tr>
+            <tr>
+              <td><strong>Spatial features</strong><br>Stages 10.1&ndash;10.2</td>
+              <td>Three C&alpha; neighborhood features; 166,509 new values independently reproduced; radius sweep over 6, 8, 10, and 12 &Aring;; 12 &Aring; selected by a pre-declared rule; out-of-fold calibration tested.</td>
+              <td>Audited &middot; 12 &Aring; at grid edge</td>
+            </tr>
+            <tr>
+              <td><strong>Tuning</strong><br>Stage 10.3</td>
+              <td>101 configurations across 102-fold LOGO-CV; golden LightGBM selected; nested LOGO-CV for a more conservative internal estimate.</td>
+              <td>Internal only</td>
+            </tr>
+            <tr>
+              <td><strong>Packaged inference</strong><br>Stage 11</td>
+              <td>Model retrained on all 55,503 rows; sigmoid calibrator; 157,432-byte joblib artifact; CLI for AFDB or local CIF/PDB plus PAE; tested end-to-end.</td>
+              <td>Tested &middot; not validation</td>
+            </tr>
+            <tr>
+              <td><strong>Next</strong><br>External validation</td>
+              <td>Test on labelled proteins not used to choose the features, radius, model, or calibrator.</td>
+              <td>Not started</td>
+            </tr>
           </tbody>
         </table>
       </div>
+      <p class="small muted">
+        Stage 9.2 is historical: its feature definitions did not match the frozen benchmark, so
+        Stage 9.3 realigned them and later work uses the realigned definitions. The repository's
+        discrepancy register records where summary metrics differed from recomputed values; the
+        recomputed values are the ones carried forward.
+      </p>
+
+      <h3>Latest internal results</h3>
+      <p>
+        The current model is the Stage 10.3 golden LightGBM at radius 12 &Aring;. These are the
+        reproduced 102-fold leave-one-protein-out (LOGO) values. They describe the same proteins
+        used to choose the features, radius, and hyperparameters.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Latest internal ai-biotech metrics for the golden LightGBM</caption>
+          <thead>
+            <tr><th scope="col">Measure</th><th scope="col">Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Median per-protein ROC-AUC / PR-AUC</td><td>0.8411 / 0.1693</td></tr>
+            <tr><td>Pooled ROC-AUC / PR-AUC</td><td>0.8131 / 0.1142</td></tr>
+            <tr><td>Pooled PR-AUC gain over 1.72% prevalence</td><td>6.63&times;</td></tr>
+            <tr><td>Within-protein z-scored ROC-AUC</td><td>0.7709</td></tr>
+            <tr><td>Nested LOGO-CV median PR-AUC / pooled gain</td><td>0.1550 / 4.55&times;</td></tr>
+            <tr><td>Out-of-fold sigmoid Brier / ECE (Stage 11)</td><td>0.0161 / 0.0008</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The nested row is the more conservative estimate because hyperparameter selection happens
+        inside the loop. The drop from a 6.63&times; to a 4.55&times; pooled PR gain reflects
+        selection optimism. Pooled metrics also mix between-protein and within-protein signal, so
+        the median and within-protein values are the better internal checks.
+      </p>
+
+      <h3>The runnable artifact</h3>
+      <p>
+        Stage 11 retrained the selected configuration on all <strong>55,503 rows</strong> and
+        exported <code>results/models/golden_lightgbm_12a.joblib</code> (157,432 bytes) with a
+        sigmoid calibrator. The <code>predict.py</code> CLI accepts a UniProt accession — fetching
+        and verifying the AFDB v6 structure and PAE — or a local CIF/PDB structure plus PAE JSON.
+        It writes <code>probability_raw</code>, <code>probability_calibrated</code>, and
+        <code>predicted_active_binding</code>.
+      </p>
+      <p>
+        On P02144, extracted features agreed with the training dataset to
+        <strong>3.55e-15</strong> and probabilities were bit-identical. P00520 confirmed the same
+        pipeline on a longer sequence (1,123 aa). Both are training proteins, so this is pipeline
+        evidence, not biological validation. The 0.5 threshold is a display convention; it produced
+        no positive calls on either test.
+      </p>
 
       <h3>What this project is not</h3>
       <p>
-        Stated plainly, because the distinction matters: this is currently a protein structure
-        analysis and dataset engineering project. It is <strong>not</strong> a finished
-        drug-discovery system. Specifically, none of the following exist yet, and none are claimed:
+        Stated plainly, because the distinction matters: this is now a data, benchmarking, and
+        internal modelling project. It is still not a finished drug-discovery system or a validated
+        predictor. None of the following exist yet, and none are claimed:
       </p>
       <ul class="list-plain">
-        <li>No trained predictive model — no training, no train/test split, no evaluation metrics</li>
-        <li>No molecular docking, molecular dynamics, or compound screening</li>
-        <li>No wet-lab or experimental validation</li>
-        <li>No comparison against experimental (PDB) structures — the dataset stores predictions only</li>
-        <li>No biological hypothesis, label, or conclusion drawn from the predictions</li>
+        <li>
+          <strong>No external validation.</strong> The deployed model and calibrator were fitted on
+          the same 102 proteins used for feature, radius, and model selection. Stage 11 is
+          deployment, not validation.
+        </li>
+        <li>
+          <strong>No generalizable predictive model.</strong> The internal LOGO metrics are not
+          evidence that the model works on new proteins.
+        </li>
+        <li>
+          <strong>No biological finding or wet-lab validation.</strong> Predictions are not evidence
+          of function, and no experimental validation exists.
+        </li>
+        <li>
+          <strong>No docking, molecular dynamics, or compound screening.</strong> The project is
+          residue-level structure analysis and benchmarking only.
+        </li>
+        <li>
+          <strong>No experimental structural ground truth.</strong> Predicted structures are the
+          only structural input; there is no comparison against experimental (PDB) structures.
+        </li>
+        <li>
+          <strong>No validated decision threshold.</strong> The 0.5 cutoff is a display convention;
+          a biological threshold would need labelled external data.
+        </li>
       </ul>
 
       <h3>Known limitations</h3>
       <ul class="list-plain">
         <li>
-          <strong>Small, narrow dataset.</strong> Seven single-chain proteins (five human, two
-          non-human) form a pipeline-validation set — not a basis for biological generalisation.
-          Residues within one protein are strongly correlated, so 1,098 rows are not 1,098
-          independent samples.
+          <strong>Imbalanced, clustered data.</strong> The set has 55,503 residues but only 955
+          positives (1.72%). Residues within a protein are strongly correlated, and 24 proteins have
+          no positive residues, so only 78 of 102 LOGO folds are evaluable. The row count is not an
+          independent-sample count.
         </li>
         <li>
-          <strong>Prediction-only ground truth.</strong> The dataset holds AlphaFold predictions
-          with no attached experimental reference structures.
+          <strong>Internal evaluation only.</strong> Feature choice, radius, model, and calibrator
+          were selected on the same 102 proteins. Nested LOGO-CV lowers median PR-AUC to 0.1550 and
+          the pooled gain to 4.55&times;, but it is still not external validation.
         </li>
         <li>
-          <strong>Single-chain only.</strong> No complexes, no ligands, no post-translational
-          modifications.
+          <strong>One protein excluded.</strong> P11532 was removed because the AFDB entry used a
+          525-aa isoform, not the 3,685-aa canonical sequence. The clean set is 102 proteins and no
+          replacement was added.
         </li>
         <li>
-          <strong>Two columns excluded by design.</strong> The Stage 3 schema includes
-          <code>contact_prob_sum</code> and <code>n_high_conf_contacts</code>, which depend on a
-          contact-probability matrix that the public AlphaFold DB downloads do not provide. Both
-          columns were excluded rather than imputed or approximated, and the exclusion is documented
-          in the dataset schema.
+          <strong>Prediction-only, single-chain inputs.</strong> The dataset stores AlphaFold
+          predictions only, with no complexes, ligands, or post-translational modifications. The
+          spatial features are collinear with the frozen features; 12 &Aring; is the edge of the
+          tested grid, not a proven global optimum. Full ablation, importance-stability tests, and
+          radii above 12 &Aring; have not been run.
+        </li>
+        <li>
+          <strong>Narrow inference contract.</strong> The CLI requires one chain, residue numbering
+          1..N, pLDDT in the B-factor column, and an N&times;N PAE matrix, with no imputation.
+          Experimental PDB files generally do not meet those conditions and are unsupported.
+          AFDB versions other than v6 only trigger a distribution-shift warning.
+        </li>
+        <li>
+          <strong>Packaging and testing gaps.</strong> The model artifact is a joblib pickle, so it
+          should only be loaded from a trusted source. Stage 11's end-to-end tests were run in a
+          separate test harness and are not committed as a test suite.
         </li>
       </ul>
 
@@ -162,7 +285,17 @@
         The repository's own code does not declare a licence yet. Structure predictions come from
         the <a href="https://alphafold.ebi.ac.uk/" target="_blank" rel="noopener noreferrer">AlphaFold
         Protein Structure Database</a> (v6), released under CC BY 4.0, with attribution to EMBL-EBI,
-        Google DeepMind, and UniProt.
+        Google DeepMind, and UniProt. Benchmark labels come from UniProt active- and binding-site
+        annotations.
+      </p>
+
+      <p class="small muted">
+        Primary evidence:
+        <a href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech/blob/main/docs/BENCHMARK_DATASET_LOCK.md" target="_blank" rel="noopener noreferrer">benchmark lock</a>
+        &middot;
+        <a href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech/blob/main/docs/PROJECT_STATUS.md" target="_blank" rel="noopener noreferrer">stage-by-stage status log</a>
+        &middot;
+        <a href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech/blob/main/src/predict.py" target="_blank" rel="noopener noreferrer">inference CLI</a>.
       </p>
 
       <div class="btn-row">
