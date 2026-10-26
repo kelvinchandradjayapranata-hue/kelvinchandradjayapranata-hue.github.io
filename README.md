@@ -36,6 +36,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 ├── assets/
 │   ├── css/style.css   Single stylesheet (design tokens, light + dark)
 │   ├── js/hero-voxel-forest.js  Optional homepage WebGL voxel forest
+│   ├── js/wall-clocks.js        Homepage wall clocks for Xi'an and WIB
 │   └── img/
 │       ├── favicon.svg SVG favicon
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
@@ -63,7 +64,9 @@ any directory, subpath, or host without modification.
 - **One stylesheet.** `assets/css/style.css` holds all design tokens and components.
 - **JavaScript is optional.** Navigation wraps responsively instead of using a hamburger menu, so
   all pages work with scripting disabled. The homepage hero adds a small, self-hosted WebGL scene
-  when available and falls back to a CSS gradient otherwise.
+  when available and falls back to a CSS gradient otherwise. The homepage also hangs two small
+  live wall clocks (Xi'an and WIB) in the margin beside the hero; on narrow screens they move
+  into a row below it, and without scripting the hands rest at 10:10.
 - **Dark mode** follows the operating system via `prefers-color-scheme` — no toggle, no storage.
 - **Accessibility.** Skip link, semantic landmarks, `aria-current` on the active nav item, visible
   focus outlines, and text contrast checked in both themes.

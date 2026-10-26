@@ -17,6 +17,16 @@
   --accent-ink:  #0a5454;
   --accent-soft: #e6f2f2;
 
+  /* Wall-clock palette — kept apart from the page tokens so the dials can
+     stay legible on their own bezel in both themes. */
+  --clock-bezel-hi: #33474c;
+  --clock-bezel-lo: #142226;
+  --clock-face:     #fbfdfd;
+  --clock-ring:     #d8e2e6;
+  --clock-tick:     #93a5ac;
+  --clock-ink:      #1a272d;
+  --clock-shadow:   rgba(16, 30, 36, .30);
+
   --radius:     10px;
   --maxw:       72rem;
   --measure:    68ch;
@@ -38,6 +48,14 @@
     --accent:      #52cfc4;
     --accent-ink:  #7ee0d6;
     --accent-soft: #123234;
+
+    --clock-bezel-hi: #3a5058;
+    --clock-bezel-lo: #0f191d;
+    --clock-face:     #101a20;
+    --clock-ring:     #2b3a42;
+    --clock-tick:     #71868f;
+    --clock-ink:      #e5edf2;
+    --clock-shadow:   rgba(0, 0, 0, .55);
   }
 }
 
@@ -105,7 +123,7 @@ code {
 
 .prose { max-width: var(--measure); }
 
-main { display: block; padding-block: 2.6rem 4rem; }
+main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 
 .skip-link {
   position: absolute;
@@ -344,6 +362,72 @@ main { display: block; padding-block: 2.6rem 4rem; }
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(18, 34, 28, .14);
 }
+
+/* --- Wall clocks --------------------------------------------------------- */
+
+/* Two small analog wall clocks hung on the page background in the empty
+   margin just outside the hero's top-right corner: Xi'an (UTC+8) and
+   Western Indonesia Time (UTC+7). They scroll with the page. When the
+   viewport is too narrow for that margin they move into the flow as a
+   centred row under the hero.
+
+   The dial geometry is shared through one SVG <defs> group;
+   assets/js/wall-clocks.js rotates the hands. Without scripting the hands
+   rest at the classic 10:10 pose. */
+
+.wall-clock__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.corner-clocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  pointer-events: none;
+}
+
+@media (min-width: 83rem) {
+  .corner-clocks {
+    position: absolute;
+    top: 2.6rem;
+    right: max(.75rem, calc((100% - 72rem) / 2 - 5rem));
+    z-index: 5;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+    width: 6rem;
+    margin-top: 0;
+  }
+}
+
+.wall-clock {
+  width: 6rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+}
+
+.wall-clock__dial {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 14px var(--clock-shadow));
+}
+
+.wall-clock figcaption {
+  text-align: center;
+  font-size: .72rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.wall-clock__caption .muted { color: var(--muted); }
 
 .eyebrow {
   font-size: .82rem;
