@@ -69,6 +69,9 @@ any directory, subpath, or host without modification.
   live wall clocks (Xi'an and WIB) at the top-right outside the hero frame — in the outer right
   margin on wide screens, just above the hero on narrower ones — each with a digital readout;
   without scripting the hands rest at 10:10.
+- **Hero message.** A thin "Miss u mom" strip runs along the inside bottom edge of the hero;
+  hovering or focusing it pauses the motion, and `prefers-reduced-motion` shows a static centred
+  line. CSS only — no new script or request.
 - **Site guide.** A 56 px launcher in the bottom-right corner opens a fixed-answer guide. Every
   reply is a static string written from these public pages and matched in the browser — no API, no
   network request, no storage. The launcher starts hidden and is revealed only when

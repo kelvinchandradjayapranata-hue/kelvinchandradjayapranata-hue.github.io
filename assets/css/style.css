@@ -203,7 +203,9 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   gap: clamp(1.5rem, 4vw, 2.75rem);
   align-items: center;
   min-height: clamp(17rem, 27vw, 25rem);
+  --hero-marquee-height: 2.5rem;
   padding: clamp(1.5rem, 3vw, 2.2rem) clamp(1.1rem, 3vw, 2rem);
+  padding-bottom: calc(clamp(1.5rem, 3vw, 2.2rem) + var(--hero-marquee-height));
   border-radius: calc(var(--radius) + 4px);
   overflow: hidden;
 
@@ -361,6 +363,79 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(18, 34, 28, .14);
+}
+
+/* A quiet strip along the inside bottom edge of the hero. The message is
+   repeated in three identical groups so the loop has no seam; the moving
+   copies are hidden from assistive technology and the group exposes the
+   message once. Hovering or focusing the strip pauses it, and reduced-motion
+   users get a single static line. */
+.hero__marquee {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: var(--hero-marquee-height);
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1;
+  user-select: none;
+}
+.hero__marquee:focus-visible { outline-offset: -3px; }
+
+.hero__marquee::before,
+.hero__marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 2rem;
+  pointer-events: none;
+}
+.hero__marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--surface), transparent);
+}
+.hero__marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--surface), transparent);
+}
+
+.hero__marquee-track {
+  display: flex;
+  width: max-content;
+  animation: hero-marquee-scroll 26s linear infinite;
+  will-change: transform;
+}
+
+.hero__marquee-group { white-space: nowrap; }
+
+.hero__marquee:hover .hero__marquee-track,
+.hero__marquee:focus .hero__marquee-track { animation-play-state: paused; }
+
+.hero__marquee-static { display: none; width: 100%; text-align: center; }
+
+@keyframes hero-marquee-scroll {
+  to { transform: translateX(-33.3333%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__marquee-track { display: none; animation: none; }
+  .hero__marquee-static { display: block; }
+}
+
+@media print {
+  .hero { padding-bottom: clamp(1.5rem, 3vw, 2.2rem); }
+  .hero__marquee { display: none !important; }
 }
 
 /* --- Wall clocks --------------------------------------------------------- */
