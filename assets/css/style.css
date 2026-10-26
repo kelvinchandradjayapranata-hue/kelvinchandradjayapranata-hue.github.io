@@ -268,8 +268,7 @@ main { display: block; padding-block: 2.6rem 4rem; }
 }
 .hero.is-webgl-ready .hero__canvas { opacity: 1; }
 
-.hero__content,
-.hero__photo {
+.hero__content {
   position: relative;
   z-index: 2;
 }
@@ -300,17 +299,22 @@ main { display: block; padding-block: 2.6rem 4rem; }
   .hero__canvas { transition: none; }
 }
 
-/* The portrait sits in its own column beside the intro once there is room for
-   both; below that breakpoint the two rows simply stack. It is deliberately
-   kept small so the name and the intro text remain the dominant elements. */
-@media (min-width: 48rem) {
-  .hero { grid-template-columns: minmax(0, 1fr) auto; }
+/* The portrait sits in the text column, on the same row as the call-to-action
+   buttons, so it reads as part of the intro rather than as a separate column.
+   It is deliberately kept small so the name and the intro text remain the
+   dominant elements. */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 1.4rem;
 }
+.hero__actions .btn-row { margin-top: 0; }
 
 .hero__photo {
   width: auto;
   height: clamp(9rem, 14vw, 10.75rem);
-  justify-self: start;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
