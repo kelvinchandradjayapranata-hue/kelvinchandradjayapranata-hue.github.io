@@ -37,6 +37,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── css/style.css   Single stylesheet (design tokens, light + dark)
 │   ├── js/hero-voxel-forest.js  Optional homepage WebGL voxel forest
 │   ├── js/wall-clocks.js        Homepage wall clocks for Xi'an and WIB
+│   ├── js/countdown.js          Homepage countdown to 17 January 2027
 │   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
 │   └── img/
 │       ├── favicon.svg SVG favicon
@@ -69,6 +70,11 @@ any directory, subpath, or host without modification.
   live wall clocks (Xi'an and WIB) at the top-right outside the hero frame — in the outer right
   margin on wide screens, just above the hero on narrower ones — each with a digital readout;
   without scripting the hands rest at 10:10.
+- **Countdown.** A compact calendar card in the outer left margin mirrors the clocks on the
+  right; on narrower screens it sits above the hero, level with the clocks. It counts calendar
+  days to 17 January 2027 in Xi'an time (UTC+8) and updates at Xi'an midnight. Without scripting
+  the date remains visible and the day count stays as a placeholder. No network, storage, or
+  third-party code.
 - **Hero message.** A thin "Miss u mom" strip runs along the inside bottom edge of the hero;
   hovering or focusing it pauses the motion, and `prefers-reduced-motion` shows a static centred
   line. CSS only — no new script or request.

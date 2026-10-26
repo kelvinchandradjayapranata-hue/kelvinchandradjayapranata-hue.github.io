@@ -438,6 +438,80 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   .hero__marquee { display: none !important; }
 }
 
+/* --- Countdown ----------------------------------------------------------- */
+
+/* A compact calendar card in the outer left margin on wide screens,
+   mirroring the wall clocks on the right. When there is no outer rail it
+   sits above the hero at the container's left edge, level with the clocks.
+   assets/js/countdown.js fills in the day count; the target date stays
+   visible without scripting. */
+
+.corner-countdown {
+  position: absolute;
+  top: 2.6rem;
+  left: clamp(1.1rem, 4vw, 2rem);
+  z-index: 5;
+  width: 4rem;
+  padding: .45rem .2rem .4rem;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 6px 14px rgba(16, 30, 36, .14);
+  text-align: center;
+  pointer-events: none;
+}
+
+.corner-countdown__date {
+  margin: 0;
+  color: var(--muted);
+  font-size: .62rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.corner-countdown__date span { display: block; }
+
+.corner-countdown__days {
+  margin: .25rem 0 0;
+  color: var(--accent-ink);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.corner-countdown__unit {
+  margin: .15rem 0 0;
+  color: var(--muted);
+  font-size: .58rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.corner-countdown__zone {
+  margin: .15rem 0 0;
+  color: var(--muted);
+  font-size: .52rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: dark) {
+  .corner-countdown { box-shadow: 0 6px 14px rgba(0, 0, 0, .45); }
+  .corner-countdown__days { color: var(--accent); }
+}
+
+@media (min-width: 80rem) {
+  .corner-countdown { left: 1rem; }
+}
+
 /* --- Wall clocks --------------------------------------------------------- */
 
 /* Two small analog wall clocks on the page background outside the hero's

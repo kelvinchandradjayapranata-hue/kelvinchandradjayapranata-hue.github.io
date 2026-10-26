@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/hero-voxel-forest.js" defer></script>
 <script src="assets/js/wall-clocks.js" defer></script>
+<script src="assets/js/countdown.js" defer></script>
 <script src="assets/js/site-guide.js" defer></script>
 </head>
 <body>
@@ -41,6 +42,14 @@
 
 <main id="main">
   <div class="container">
+
+    <aside class="corner-countdown" data-countdown aria-labelledby="countdown-title">
+      <h2 class="visually-hidden" id="countdown-title">Countdown to 17 January 2027, Xi'an time</h2>
+      <p class="corner-countdown__date" aria-hidden="true"><span>17 Jan</span> <span>2027</span></p>
+      <p class="corner-countdown__days"><span data-countdown-days>--</span></p>
+      <p class="corner-countdown__unit">days</p>
+      <p class="corner-countdown__zone" aria-hidden="true">Xi'an</p>
+    </aside>
 
     <aside class="corner-clocks" aria-labelledby="local-time-title">
       <h2 class="visually-hidden" id="local-time-title">Local time</h2>
