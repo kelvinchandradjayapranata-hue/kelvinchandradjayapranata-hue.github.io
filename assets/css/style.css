@@ -365,11 +365,12 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 
 /* --- Wall clocks --------------------------------------------------------- */
 
-/* Two small analog wall clocks hung on the page background in the empty
-   margin just outside the hero's top-right corner: Xi'an (UTC+8) and
-   Western Indonesia Time (UTC+7). They scroll with the page. When the
-   viewport is too narrow for that margin they move into the flow as a
-   centred row under the hero.
+/* Two small analog wall clocks on the page background outside the hero's
+   top-right corner: Xi'an (UTC+8) and Western Indonesia Time (UTC+7). On
+   wide screens they hang in the outer right margin, at the page corner;
+   when that margin is too narrow they sit right-aligned just above the
+   hero, still outside its frame. The digital readout under each dial keeps
+   the hour unmistakable at this size.
 
    The dial geometry is shared through one SVG <defs> group;
    assets/js/wall-clocks.js rotates the hands. Without scripting the hands
@@ -384,40 +385,39 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 
 .corner-clocks {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 1.75rem;
+  margin-bottom: 1.1rem;
   pointer-events: none;
 }
 
-@media (min-width: 83rem) {
+@media (min-width: 80rem) {
   .corner-clocks {
     position: absolute;
     top: 2.6rem;
-    right: max(.75rem, calc((100% - 72rem) / 2 - 5rem));
+    right: 1rem;
     z-index: 5;
     flex-direction: column;
     align-items: center;
-    gap: 1.35rem;
-    width: 6rem;
-    margin-top: 0;
+    gap: 1.25rem;
+    margin-bottom: 0;
   }
 }
 
 .wall-clock {
-  width: 6rem;
+  width: 4rem;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .45rem;
+  gap: .35rem;
 }
 
 .wall-clock__dial {
-  width: 100%;
+  width: 4rem;
   height: auto;
-  filter: drop-shadow(0 8px 14px var(--clock-shadow));
+  filter: drop-shadow(0 5px 9px var(--clock-shadow));
 }
 
 .wall-clock figcaption {
@@ -427,7 +427,15 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   white-space: nowrap;
 }
 
-.wall-clock__caption .muted { color: var(--muted); }
+.wall-clock__digital {
+  display: block;
+  margin-top: .1rem;
+  font-family: var(--mono);
+  font-size: .8rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+  color: var(--text);
+}
 
 .eyebrow {
   font-size: .82rem;

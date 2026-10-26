@@ -64,9 +64,10 @@ any directory, subpath, or host without modification.
 - **One stylesheet.** `assets/css/style.css` holds all design tokens and components.
 - **JavaScript is optional.** Navigation wraps responsively instead of using a hamburger menu, so
   all pages work with scripting disabled. The homepage hero adds a small, self-hosted WebGL scene
-  when available and falls back to a CSS gradient otherwise. The homepage also hangs two small
-  live wall clocks (Xi'an and WIB) in the margin beside the hero; on narrow screens they move
-  into a row below it, and without scripting the hands rest at 10:10.
+  when available and falls back to a CSS gradient otherwise. The homepage also shows two small
+  live wall clocks (Xi'an and WIB) at the top-right outside the hero frame — in the outer right
+  margin on wide screens, just above the hero on narrower ones — each with a digital readout;
+  without scripting the hands rest at 10:10.
 - **Dark mode** follows the operating system via `prefers-color-scheme` — no toggle, no storage.
 - **Accessibility.** Skip link, semantic landmarks, `aria-current` on the active nav item, visible
   focus outlines, and text contrast checked in both themes.

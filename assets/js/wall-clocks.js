@@ -3,7 +3,8 @@
 
    Each figure in the markup carries its IANA time zone and its UTC offset.
    The SVG hands are groups rotated around the dial centre once per second,
-   and a visually hidden digital time stays in sync for screen readers.
+   and the digital time under each dial stays in sync for sighted readers
+   and screen readers alike.
 
    Asia/Shanghai and Asia/Jakarta both use fixed offsets with no daylight
    saving, so if Intl time-zone support is missing the clocks still work from
