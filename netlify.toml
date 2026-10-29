@@ -1,0 +1,16 @@
+# Netlify mirror configuration.
+# The same repository is also served by GitHub Pages, which ignores this file,
+# so nothing here can affect the primary site.
+#
+# Deploy with no build step: this is plain static HTML/CSS/JS.
+
+[build]
+  publish = "."
+
+# Assets are not content-hashed. Keep the cache short so an updated file is
+# picked up within the hour instead of being pinned for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    X-Content-Type-Options = "nosniff"
