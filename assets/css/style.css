@@ -450,6 +450,47 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 @media print {
   .hero { padding-bottom: clamp(1.5rem, 3vw, 2.2rem); }
   .hero__marquee { display: none !important; }
+  .hero__voice-toggle { display: none !important; }
+}
+
+/* --- Hero voice clip ----------------------------------------------------- */
+
+/* The clip starts on the visitor's first interaction, so the only control is
+   the mute toggle that appears once playback begins. It sits just above the
+   marquee at the right edge, clear of the emblem and the text column. The
+   pressed state is what the icon follows, so the markup alone is complete. */
+.hero__voice-toggle {
+  position: absolute;
+  right: clamp(0.9rem, 2vw, 1.5rem);
+  bottom: calc(var(--hero-marquee-height) + 0.75rem);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(18, 34, 28, .16);
+}
+
+.hero__voice-toggle[hidden] { display: none; }
+
+.hero__voice-toggle:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.hero__voice-toggle [data-icon="muted"] { display: none; }
+.hero__voice-toggle[aria-pressed="true"] [data-icon="sound"] { display: none; }
+.hero__voice-toggle[aria-pressed="true"] [data-icon="muted"] { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  .hero__voice-toggle { box-shadow: 0 4px 14px rgba(0, 0, 0, .45); }
 }
 
 /* --- Countdown ----------------------------------------------------------- */
