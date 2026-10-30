@@ -162,9 +162,9 @@
            interaction with the page. The mute toggle stays hidden until
            playback begins and hides again when the clip ends. Without
            scripting nothing plays and the toggle never appears. -->
-      <audio data-hero-voice preload="metadata" src="assets/audio/hero-voice.mp3" hidden></audio>
+      <audio data-hero-voice preload="auto" src="assets/audio/hero-voice.mp3" hidden></audio>
       <button class="hero__voice-toggle" type="button" data-hero-voice-toggle
-              aria-pressed="false" aria-label="Mute the voice clip" hidden>
+              aria-pressed="false" aria-label="Mute the AI-generated voice clip" hidden>
         <svg data-icon="sound" viewBox="0 0 24 24" width="18" height="18" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round"
              stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -178,6 +178,7 @@
           <path d="M11 5 6.5 9H3v6h3.5L11 19z"/>
           <path d="m16 9 5 5m0-5-5 5"/>
         </svg>
+        <span class="hero__voice-toggle__label">AI voice</span>
       </button>
 
       <div class="hero__marquee" role="group" tabindex="0"
