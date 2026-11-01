@@ -1,32 +1,14 @@
 /* ==========================================================================
-   Project windows — projects.html
+   Project windows — deep links on projects.html
    ==========================================================================
 
-   Two enhancements on top of the native <details> behaviour:
-
-   1. On devices with a real pointer, pointing at the outer Projects window
-      opens it, so the two project windows appear below without a click.
-      Hovering never closes it; closing stays with the summary toggle.
-   2. A link such as projects.html#melanin-biotech opens the outer window and
-      the named project window, then brings it into view.
-
-   Without this file the hash still reaches the window title and the visitor
-   opens it with the native summary. */
+   A link such as projects.html#melanin-biotech opens the outer Projects
+   window and the named project window, then brings it into view. Without
+   this file the hash still reaches the window title; the visitor just opens
+   it with the native <details> summary. */
 
 (function () {
   "use strict";
-
-  var outer = document.querySelector("[data-project-windows]");
-  var canHover =
-    window.matchMedia && window.matchMedia("(hover: hover)").matches;
-
-  if (outer && canHover) {
-    outer.addEventListener("pointerenter", function () {
-      if (!outer.open) {
-        outer.open = true;
-      }
-    });
-  }
 
   var id = window.location.hash.slice(1);
   if (!id) {

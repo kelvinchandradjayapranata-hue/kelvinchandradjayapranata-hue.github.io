@@ -83,10 +83,10 @@ any directory, subpath, or host without modification.
   holds one click-to-open window per project (ai-biotech and melanin-biotech). The title bar is
   the `<summary>`, so the windows open, close, and keyboard-focus without scripting. The Projects
   card in the home Explore grid previews both project windows in a panel that drops below it on
-  hover or keyboard focus (CSS only; touch users tap through to `projects.html`). On that page,
-  `project-windows.js` opens the outer window on hover for pointer devices and opens the window
-  named in the URL hash, so `projects.html#melanin-biotech` arrives with the right project already
-  expanded. Hover only opens; the native summary toggle still closes the window.
+  hover or keyboard focus (CSS only; touch users tap through to `projects.html`). The home hero
+  window shows the same two mini windows in a panel below its frame on hover or keyboard focus.
+  On `projects.html`, `project-windows.js` opens the window named in the URL hash, so
+  `projects.html#melanin-biotech` arrives with the right project already expanded.
 - **Gallery.** A separate `gallery.html` page shows eleven photographs in one frame split into three
   columns at every width; captions hide on narrow screens and each frame links to the full-size
   image in a new tab. The full-resolution source photos stay in the local, git-ignored `image/`

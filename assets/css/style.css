@@ -379,6 +379,73 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   box-shadow: 0 8px 24px rgba(18, 34, 28, .14);
 }
 
+/* The hero window previews the two projects in a panel that hangs below the
+   frame on hover or keyboard focus, mirroring the Explore card menu. The
+   panel sits outside .hero so the hero's overflow: hidden cannot clip it,
+   and a transparent bridge keeps the hover alive across the small gap. */
+.hero-shell { position: relative; }
+.hero-shell:hover,
+.hero-shell:focus-within { z-index: 15; }
+
+.hero-projects {
+  position: absolute;
+  top: calc(100% + .55rem);
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+  flex-direction: column;
+  gap: .55rem;
+  padding: .75rem;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: calc(var(--radius) + 2px);
+  box-shadow: 0 18px 40px rgba(16, 30, 36, .18);
+  animation: card-menu-in .14s ease-out;
+}
+.hero-projects::before {
+  content: "";
+  position: absolute;
+  top: -.6rem;
+  right: 0;
+  left: 0;
+  height: .6rem;
+}
+
+@media (hover: hover) {
+  .hero-shell:hover .hero-projects,
+  .hero-shell:focus-within .hero-projects { display: flex; }
+}
+
+.hero-projects__title {
+  margin: 0;
+  padding: 0 .15rem .1rem;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.hero-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+}
+
+@media (max-width: 40rem) {
+  .hero-projects__grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-projects { box-shadow: 0 18px 40px rgba(0, 0, 0, .55); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-projects { animation: none; }
+}
+
 /* A quiet strip along the inside bottom edge of the hero. The message is
    repeated in three identical groups so the loop has no seam; the moving
    copies are hidden from assistive technology and the group exposes the

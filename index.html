@@ -129,6 +129,7 @@
       </figure>
     </aside>
 
+    <div class="hero-shell">
     <section class="hero">
       <canvas class="hero__canvas" aria-hidden="true"></canvas>
       <img class="hero__emblem"
@@ -191,6 +192,28 @@
         </span>
       </div>
     </section>
+
+    <!-- Hovering the hero window drops this panel below it, so the two
+         project windows can be chosen without leaving the home page. -->
+    <div class="hero-projects">
+      <p class="hero-projects__title">Project windows</p>
+      <div class="hero-projects__grid">
+
+        <a class="mini-window" href="projects.html#ai-biotech">
+          <span class="mini-window__title">ai-biotech</span>
+          <span class="mini-window__desc">Audited AlphaFold dataset, frozen benchmark, internal LightGBM baseline. Internal evaluation only, no external validation.</span>
+          <span class="mini-window__go">Open project &rarr;</span>
+        </a>
+
+        <a class="mini-window" href="projects.html#melanin-biotech">
+          <span class="mini-window__title">melanin-biotech</span>
+          <span class="mini-window__desc">Fungal radiosynthesis scaffold: reduced flux-balance model, ortholog check, docking pilot. No production MD, DFT, or experiments.</span>
+          <span class="mini-window__go">Open project &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+    </div>
 
     <section>
       <h2 class="section-title">Currently</h2>
