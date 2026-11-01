@@ -876,6 +876,13 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 .window__body > :first-child { margin-top: 0; }
 .window__body > :last-child { margin-bottom: 0; }
 
+/* The body drops in when a window opens, which makes the hover reveal on
+   projects.html read as windows unfolding rather than content popping in. */
+@keyframes window-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+}
+.window[open] > .window__body { animation: window-reveal .16s ease-out; }
+
 /* A nested window reads as a window inside the outer frame: quieter
    background, tighter rhythm, and a little inset on wide screens. */
 .window--nested {
@@ -889,6 +896,7 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .window__chevron { transition: none; }
+  .window[open] > .window__body { animation: none; }
 }
 
 /* --- Badges -------------------------------------------------------------- */

@@ -41,6 +41,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/countdown.js          Homepage countdown to 17 January 2027
 │   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
 │   ├── js/hero-voice.js         Homepage AI voice clip, started on first interaction
+│   ├── js/project-windows.js    Opens the outer project window on hover (pointer devices)
 │   └── img/
 │       ├── favicon.svg SVG favicon
 │       ├── gallery/    Eleven 1000×750 gallery images (metadata stripped)
@@ -80,7 +81,9 @@ any directory, subpath, or host without modification.
   third-party code.
 - **Project windows.** `projects.html` nests native `<details>` elements: one outer window that
   holds one click-to-open window per project (ai-biotech and melanin-biotech). The title bar is
-  the `<summary>`, so the windows open, close, and keyboard-focus without scripting.
+  the `<summary>`, so the windows open, close, and keyboard-focus without scripting. On devices
+  with a real pointer, `project-windows.js` also opens the outer window on hover; hovering never
+  closes it, so touch and keyboard users keep the native click behaviour.
 - **Gallery.** A separate `gallery.html` page shows eleven photographs in one frame split into three
   columns at every width; captions hide on narrow screens and each frame links to the full-size
   image in a new tab. The full-resolution source photos stay in the local, git-ignored `image/`
