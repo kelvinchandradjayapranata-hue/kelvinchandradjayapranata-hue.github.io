@@ -406,17 +406,19 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
 @media (min-width: 104rem) {
   .side-character {
     position: absolute;
-    top: 11rem;
+    top: 10rem;
     left: 1.5rem;
     z-index: 5;
     display: block;
     pointer-events: none;
   }
 
+  /* Fill the outer rail while keeping a 3.5rem street between the figure and
+     the page column. The height follows the clip's own 320:568 ratio. */
   .side-character__video {
     display: block;
-    width: auto;
-    height: clamp(20rem, 24vw, 32rem);
+    width: min(22rem, calc((100vw - 72rem) / 2 - 3.5rem));
+    height: auto;
     filter: drop-shadow(0 14px 24px rgba(10, 22, 14, .25));
   }
 
