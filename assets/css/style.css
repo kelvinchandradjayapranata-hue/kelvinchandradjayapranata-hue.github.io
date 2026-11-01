@@ -398,6 +398,37 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   .hero__character { display: none; }
 }
 
+/* On very wide screens the outer left rail is wide enough to hold the
+   character at full size, below the countdown. The in-hero copy is hidden
+   there so the same character never appears twice. */
+.side-character { display: none; }
+
+@media (min-width: 104rem) {
+  .side-character {
+    position: absolute;
+    top: 11rem;
+    left: 1.5rem;
+    z-index: 5;
+    display: block;
+    pointer-events: none;
+  }
+
+  .side-character__video {
+    display: block;
+    width: auto;
+    height: clamp(20rem, 24vw, 32rem);
+    filter: drop-shadow(0 14px 24px rgba(10, 22, 14, .25));
+  }
+
+  .hero__character { display: none; }
+}
+
+@media (min-width: 104rem) and (prefers-color-scheme: dark) {
+  .side-character__video {
+    filter: drop-shadow(0 14px 26px rgba(0, 0, 0, .55));
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .hero__character { filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .5)); }
 }
@@ -542,6 +573,7 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   .hero__marquee { display: none !important; }
   .hero__voice-toggle { display: none !important; }
   .hero__character { display: none !important; }
+  .side-character { display: none !important; }
 }
 
 /* --- Hero voice clip ----------------------------------------------------- */

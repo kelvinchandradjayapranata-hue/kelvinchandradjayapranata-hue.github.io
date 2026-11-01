@@ -5,6 +5,8 @@
    The poster is the complete no-script state. The clip loads only on wide
    screens and only when the visitor has not asked for reduced motion, so
    phones never download it and motion-sensitive visitors keep the still.
+   At 104rem and wider the same clip moves to the outer left rail below the
+   countdown and is shown large; only that copy is given a source.
 
    The WebM carries a VP9 alpha channel. Browsers that cannot decode it keep
    showing the poster; WebKit-based browsers are skipped because they play
@@ -13,21 +15,30 @@
 (function () {
   "use strict";
 
-  var video = document.querySelector("[data-hero-character]");
-  if (!video) {
+  var heroVideo = document.querySelector("[data-hero-character]");
+  var sideVideo = document.querySelector("[data-side-character]");
+  if (!heroVideo || !sideVideo) {
     return;
   }
 
   var reduce =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-  var wide = window.matchMedia && window.matchMedia("(min-width: 78rem)");
+  var wideHero = window.matchMedia && window.matchMedia("(min-width: 78rem)");
+  var wideSide = window.matchMedia && window.matchMedia("(min-width: 104rem)");
 
   var ua = navigator.userAgent || "";
   var webkitOnly =
     /AppleWebKit/.test(ua) &&
     !/(Chrome|CriOS|Chromium|Edg|EdgiOS|OPR|FxiOS|Firefox)/.test(ua);
 
-  if (!wide || !wide.matches || webkitOnly || (reduce && reduce.matches)) {
+  var video = null;
+  if (wideSide && wideSide.matches) {
+    video = sideVideo;
+  } else if (wideHero && wideHero.matches) {
+    video = heroVideo;
+  }
+
+  if (!video || webkitOnly || (reduce && reduce.matches)) {
     return;
   }
 

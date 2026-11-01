@@ -78,8 +78,10 @@ any directory, subpath, or host without modification.
   margin on wide screens, just above the hero on narrower ones — each with a digital readout;
   without scripting the hands rest at 10:10.
 - **Hero character.** A transparent VP9 WebM (320×568, 8 s, palindrome loop) stands on the right
-  side of the home hero above the marquee. `hero-character.js` loads it only at 78 rem and wider,
-  and only when reduced motion is not requested; otherwise the transparent PNG poster shows.
+  side of the home hero above the marquee at 78 rem and wider. At 104 rem and wider it moves to
+  the outer left rail below the countdown and is shown large, with the in-hero copy hidden so it
+  never appears twice. `hero-character.js` loads only the visible copy, only at those widths, and
+  only when reduced motion is not requested; otherwise the transparent PNG poster shows.
   WebKit-based browsers keep the poster because they play VP9 without compositing its alpha, and
   phones never download the clip. The green-screen source frames stay in the git-ignored `image/`
   folder; the published clip is the chroma-keyed derivative.
