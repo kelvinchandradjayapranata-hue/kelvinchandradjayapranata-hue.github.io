@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects — Kelvin Chandra Djayapranata</title>
-<meta name="description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
+<meta name="description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech (audited AlphaFold dataset, frozen benchmark, internal LightGBM baseline) and melanin-biotech (in silico radiosynthesis with fungal melanin).">
 <link rel="canonical" href="https://kelvinchandradjayapranata-hue.github.io/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Projects — Kelvin Chandra Djayapranata">
-<meta property="og:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
+<meta property="og:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech (audited AlphaFold dataset, frozen benchmark, internal LightGBM baseline) and melanin-biotech (in silico radiosynthesis with fungal melanin).">
 <meta property="og:url" content="https://kelvinchandradjayapranata-hue.github.io/projects.html">
 <meta property="og:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects — Kelvin Chandra Djayapranata">
-<meta name="twitter:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech: an audited AlphaFold dataset, frozen benchmark, and internal LightGBM baseline.">
+<meta name="twitter:description" content="Research and portfolio work by Kelvin Chandra Djayapranata — ai-biotech (audited AlphaFold dataset, frozen benchmark, internal LightGBM baseline) and melanin-biotech (in silico radiosynthesis with fungal melanin).">
 <meta name="twitter:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -49,9 +49,47 @@
       </p>
     </div>
 
-    <!-- ================= ai-biotech ================= -->
-    <article class="prose">
-      <h2>ai-biotech</h2>
+    <!-- ================= Project windows ================= -->
+    <!-- Native <details> so the windows open and close without scripting.
+         The outer window holds one nested window per project. -->
+    <details class="window" open>
+      <summary class="window__bar">
+        <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="window__heading">
+          <span class="window__title">Project windows</span>
+          <span class="window__subtitle">Two projects &middot; click a window to open its details</span>
+        </span>
+        <span class="window__aside">
+          <span class="window__count" aria-hidden="true">2</span>
+          <svg class="window__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="m9 6 6 6-6 6"/>
+          </svg>
+        </span>
+      </summary>
+
+      <div class="window__body">
+
+        <!-- ================= ai-biotech ================= -->
+        <details class="window window--nested">
+          <summary class="window__bar">
+            <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="window__heading">
+              <h2 class="window__title">ai-biotech</h2>
+              <span class="window__subtitle">Protein structure analysis &middot; audited dataset and internal baseline</span>
+            </span>
+            <span class="window__aside">
+              <span class="badge badge--quiet">Public</span>
+              <svg class="window__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                   stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="m9 6 6 6-6 6"/>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="window__body prose">
 
       <div class="badge-row">
         <span class="badge">Public</span>
@@ -301,7 +339,204 @@
       <div class="btn-row">
         <a class="btn btn--primary" href="https://github.com/kelvinchandradjayapranata-hue/ai-biotech" target="_blank" rel="noopener noreferrer">View repository on GitHub</a>
       </div>
-    </article>
+
+          </div>
+        </details>
+
+        <!-- ================= melanin-biotech ================= -->
+        <details class="window window--nested">
+          <summary class="window__bar">
+            <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="window__heading">
+              <h2 class="window__title">melanin-biotech</h2>
+              <span class="window__subtitle">In Silico Reengineering of Radiosynthetic Pathways &middot; fungal melanin and radiation</span>
+            </span>
+            <span class="window__aside">
+              <span class="badge badge--quiet">Pipeline complete</span>
+              <svg class="window__chevron" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                   stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="m9 6 6 6-6 6"/>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="window__body prose">
+            <div class="badge-row">
+              <span class="badge">Public</span>
+              <span class="badge badge--quiet">Core pipeline runs end-to-end</span>
+              <span class="badge badge--quiet">In silico only</span>
+              <span class="badge badge--quiet">No experimental validation</span>
+            </div>
+
+            <p>
+              A computational study of the radiotrophy hypothesis: whether fungal melanin can
+              absorb ionizing radiation and pass that energy into metabolism. The project uses
+              <em>Cladosporium sphaerospermum</em> &mdash; the dark-pigmented fungus grown on the
+              International Space Station &mdash; as a template, and asks the smaller, testable
+              question rather than assuming that fungi &ldquo;eat radiation&rdquo;.
+            </p>
+            <p>
+              It builds a reduced stoichiometric model of the DHN-melanin and DOPA-melanin
+              pathways, checks whether key pathway enzymes have detectable orthologs in the
+              <em>C. sphaerospermum</em> genome, and runs a geometry and docking pilot before
+              staging molecular dynamics and DFT steps. Every stage separates what the data
+              support from what remains a hypothesis.
+            </p>
+
+            <dl class="facts">
+              <dt>Repository</dt>
+              <dd><a href="https://github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways" target="_blank" rel="noopener noreferrer">github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways</a></dd>
+
+              <dt>Status</dt>
+              <dd>Computational scaffold complete &middot; core pipeline runs end-to-end &middot; exploratory results only</dd>
+
+              <dt>Organism</dt>
+              <dd><em>Cladosporium sphaerospermum</em> IMV 00045 (ISS isolate), with reference orthologs from <em>C. cladosporioides</em> and <em>C. halotolerans</em></dd>
+
+              <dt>Model</dt>
+              <dd>Reduced SBML flux-balance model of the DHN- and DOPA-melanin pathways; radiation modelled as an electron input and an energy input</dd>
+
+              <dt>Homology</dt>
+              <dd>tblastn against three assemblies &middot; 7 ortholog queries &middot; 21 of 21 query &times; assembly combinations returned strong hits</dd>
+
+              <dt>Docking pilot</dt>
+              <dd>6 of 6 DHN ligand/receptor combinations succeeded &middot; best raw score &minus;9.66 kcal/mol (DHN trimer on the PKS1 surrogate 8CG4)</dd>
+
+              <dt>Language</dt>
+              <dd>Python 3.12</dd>
+            </dl>
+
+            <h3>What has been built</h3>
+            <div class="table-wrap">
+              <table>
+                <caption class="visually-hidden">Completed melanin-biotech pipeline stages and their status</caption>
+                <thead>
+                  <tr><th scope="col">Area</th><th scope="col">What exists</th><th scope="col">Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Data and provenance</strong></td>
+                    <td>Validated NCBI fetch with a manifest that separates two direct <em>C. sphaerospermum</em> sequences from reference orthologs; a mislabelled accession moved to a rejected folder.</td>
+                    <td>Validated</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Reduced metabolic model</strong></td>
+                    <td>SBML flux-balance model of the DHN and DOPA pathways with radiation inputs, radiation-level and one-at-a-time parameter sweeps, and a flux plot.</td>
+                    <td>Optimal &middot; not calibrated</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Homology validation</strong></td>
+                    <td>tblastn of 7 ortholog queries against 3 <em>Cladosporium</em> assemblies, with per-assembly hit tables and a combined summary.</td>
+                    <td>21/21 strong hits</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Docking pilot</strong></td>
+                    <td>AutoDock Vina docking of DHN monomer, dimer, and trimer to PKS1 and laccase surrogates; pose clustering, interaction maps, and a 3D pose viewer.</td>
+                    <td>6/6 combinations</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MD preparation</strong></td>
+                    <td>OpenMM module builds solvated systems and Colab runners (PDBFixer, Amber ff14SB, OpenFF ligand parameters, TIP3P water, 0.15&nbsp;M ions).</td>
+                    <td>Module complete &middot; no production run</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DFT staging and rates</strong></td>
+                    <td>ORCA input staging for four-point reorganization energy and dimer coupling, plus a stdlib Marcus single-electron transfer rate calculator.</td>
+                    <td>Staged &middot; DFT not run</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Latest in silico results</h3>
+            <p>
+              These are the reproducible exploratory numbers. They come from a reduced model and
+              a pilot docking run, not from experiments.
+            </p>
+            <div class="table-wrap">
+              <table>
+                <caption class="visually-hidden">Latest melanin-biotech in silico results</caption>
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Flux-balance status</td><td>Optimal</td></tr>
+                  <tr><td>DHN-melanin export</td><td>1.920</td></tr>
+                  <tr><td>DOPA-melanin export</td><td>1.000</td></tr>
+                  <tr><td>Ortholog validation</td><td>21 strong, 0 moderate, 0 weak, 0 not detected</td></tr>
+                  <tr><td>Best docking raw score</td><td>&minus;9.66 kcal/mol (DHN trimer, PKS1 surrogate 8CG4)</td></tr>
+                  <tr><td>Best ligand efficiency</td><td>&minus;0.493 kcal/mol per heavy atom (DHN monomer, 8CG4)</td></tr>
+                  <tr><td>Production MD / DFT</td><td>None run</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small muted">
+              Raw Vina scores are biased by ligand size, so the ligand-efficiency row is the more
+              honest comparison between DHN monomer, dimer, and trimer poses.
+            </p>
+
+            <h3>What this project is not</h3>
+            <ul class="list-plain">
+              <li>
+                <strong>No experimental validation.</strong> Every number is an in silico estimate;
+                no biological claim or engineering application follows from it.
+              </li>
+              <li>
+                <strong>No production MD or DFT.</strong> The pipeline prepares OpenMM systems and
+                stages ORCA inputs; neither simulation has been run.
+              </li>
+              <li>
+                <strong>Not a genome-scale model.</strong> The FBA model is a reduced stoichiometry
+                with placeholder biomass and maintenance reactions, not measured parameters for
+                <em>C. sphaerospermum</em>.
+              </li>
+              <li>
+                <strong>No claim that fungi &ldquo;eat radiation&rdquo;.</strong> The radiotrophy
+                hypothesis is debated; the project tests it step by step rather than assuming it.
+              </li>
+              <li>
+                <strong>No true target structures or affinities.</strong> Docking uses PDB homolog
+                surrogates (1GW0 for laccase, 8CG4 for PKS1), and Vina scores are not binding
+                affinities.
+              </li>
+              <li>
+                <strong>Homology is not function.</strong> tblastn hits are sequence evidence only;
+                they do not show expression or involvement in the melanin pathway.
+              </li>
+              <li>
+                <strong>The Marcus model is narrow.</strong> A single-electron outer-sphere
+                treatment does not automatically represent physiological NAD+/NADP+ hydride
+                transfer or pH-dependent PCET.
+              </li>
+            </ul>
+
+            <div class="panel">
+              <p class="mb-0">
+                <strong>Note on the data.</strong> NCBI does not yet provide a complete annotated
+                DHN-melanin gene set for <em>C. sphaerospermum</em>; only two partial type III PKS
+                sequences are direct, and the rest are reference orthologs. The project records
+                that distinction rather than blurring it.
+              </p>
+            </div>
+
+            <p class="small muted">
+              The repository's own code does not declare a licence yet. Primary evidence:
+              <a href="https://github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways/blob/main/README.md" target="_blank" rel="noopener noreferrer">project README</a>
+              &middot;
+              <a href="https://github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways/blob/main/docs/marcus_dft_protocol.md" target="_blank" rel="noopener noreferrer">Marcus/DFT protocol</a>
+              &middot;
+              <a href="https://github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways/blob/main/docs/colab_runbook.md" target="_blank" rel="noopener noreferrer">MD/DFT runbook</a>.
+            </p>
+
+            <div class="btn-row">
+              <a class="btn btn--primary" href="https://github.com/kelvinchandradjayapranata-hue/In-Silico-Reengineering-of-Radiosynthetic-Pathways" target="_blank" rel="noopener noreferrer">View repository on GitHub</a>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </details>
 
     <hr>
 

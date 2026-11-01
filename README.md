@@ -28,7 +28,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 .
 ├── index.html          Home — profile summary, current work, navigation
 ├── about.html          Academic background, focus, working approach
-├── projects.html       ai-biotech — completed work, internal results, limitations
+├── projects.html       ai-biotech and melanin-biotech — click-to-open project windows
 ├── research.html       Research interests and directions
 ├── writing.html        Technical writing — Biopython guide
 ├── gallery.html        Gallery — laboratory and everyday photographs
@@ -40,9 +40,10 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/wall-clocks.js        Homepage wall clocks for Xi'an and WIB
 │   ├── js/countdown.js          Homepage countdown to 17 January 2027
 │   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
+│   ├── js/hero-voice.js         Homepage AI voice clip, started on first interaction
 │   └── img/
 │       ├── favicon.svg SVG favicon
-│       ├── gallery/    Six 1000×750 gallery images (metadata stripped)
+│       ├── gallery/    Eleven 1000×750 gallery images (metadata stripped)
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
 ├── .gitignore          Excludes local tooling config
 ├── .nojekyll           Prevents Jekyll processing on GitHub Pages
@@ -77,7 +78,10 @@ any directory, subpath, or host without modification.
   days to 17 January 2027 in Xi'an time (UTC+8) and updates at Xi'an midnight. Without scripting
   the date remains visible and the day count stays as a placeholder. No network, storage, or
   third-party code.
-- **Gallery.** A separate `gallery.html` page shows six photographs in one frame split into three
+- **Project windows.** `projects.html` nests native `<details>` elements: one outer window that
+  holds one click-to-open window per project (ai-biotech and melanin-biotech). The title bar is
+  the `<summary>`, so the windows open, close, and keyboard-focus without scripting.
+- **Gallery.** A separate `gallery.html` page shows eleven photographs in one frame split into three
   columns at every width; captions hide on narrow screens and each frame links to the full-size
   image in a new tab. The full-resolution source photos stay in the local, git-ignored `image/`
   folder; only 1000×750 derivatives with metadata stripped are published. CSS only — no script.
@@ -98,7 +102,8 @@ any directory, subpath, or host without modification.
 Every factual claim on this site is drawn from the owner's public GitHub profile and public
 repositories. The site deliberately:
 
-- Links only the two verified public repositories (`ai-biotech` and `why-biopython-matters`).
+- Links only verified public repositories (`ai-biotech`,
+  `In-Silico-Reengineering-of-Radiosynthetic-Pathways`, and `why-biopython-matters`).
 - Does **not** publish a personal email address or any sensitive contact detail.
 - Does **not** claim publications, awards, research positions, or validated biological results.
 - Distinguishes internal cross-validation from external validation; no model metric is presented

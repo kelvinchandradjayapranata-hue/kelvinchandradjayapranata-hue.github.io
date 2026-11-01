@@ -43,14 +43,16 @@
              "protein", "residues", "residue", "integrity", "checks", "ai",
              "ai4bio", "ai biotech", "machine learning", "model", "models",
              "lightgbm", "golden", "benchmark", "calibration", "external validation"],
-      answer: "Kelvin is building <strong>ai-biotech</strong>, an AI4Bio project. Stages 1–11 are complete and the Stage 8.2 benchmark is locked. The latest cleaned dataset has <strong>102 proteins</strong>, <strong>55,503 residues</strong>, and <strong>955 positive residues</strong> (1.72%). A selected LightGBM baseline and inference CLI exist, but all reported metrics are internal leave-one-protein-out results — <strong>no external validation has been run</strong>. Base extraction checks remain 72/72, and later stages were audited. Details: <a href=\"projects.html\">Projects</a>."
+      answer: "Kelvin is building two projects. <strong>ai-biotech</strong> is an AI4Bio project: Stages 1–11 are complete and the Stage 8.2 benchmark is locked. The latest cleaned dataset has <strong>102 proteins</strong>, <strong>55,503 residues</strong>, and <strong>955 positive residues</strong> (1.72%). A selected LightGBM baseline and inference CLI exist, but all reported metrics are internal leave-one-protein-out results — <strong>no external validation has been run</strong>. Base extraction checks remain 72/72, and later stages were audited. <strong>melanin-biotech</strong> is a computational scaffold testing the fungal radiosynthesis hypothesis; its core pipeline runs end-to-end, but <strong>no production MD, DFT, or experimental validation has been run</strong>. Details: <a href=\"projects.html\">Projects</a>."
     },
     {
       keys: ["project", "projects", "projects on this site",
              "projects are on this site", "repo", "repos", "repository",
              "repositories", "code", "source code", "built",
-             "what has he built", "work sample", "portfolio"],
-      answer: "The public work is <strong>ai-biotech</strong> — an AI4Bio pipeline for protein structure analysis that now includes an audited 102-protein dataset, a frozen benchmark, an internal LightGBM baseline, and a runnable inference CLI — and <strong>why-biopython-matters</strong>, a technical guide to Biopython. The site states what is unfinished as well as what is finished. See <a href=\"projects.html\">Projects</a> and <a href=\"writing.html\">Writing</a>."
+             "what has he built", "work sample", "portfolio",
+             "melanin", "melanin biotech", "melanin-biotech", "radiosynthesis",
+             "radiotrophy", "fungi", "fungus", "radiation", "chernobyl"],
+      answer: "The public research projects are <strong>ai-biotech</strong> — an AI4Bio pipeline for protein structure analysis with an audited 102-protein dataset, a frozen benchmark, an internal LightGBM baseline, and a runnable inference CLI — and <strong>melanin-biotech</strong>, an in silico study of <em>Cladosporium sphaerospermum</em> and the radiosynthesis hypothesis, with a reduced flux-balance model, an ortholog check, and a docking pilot but no production MD, DFT, or experimental validation. The public technical writing is <strong>why-biopython-matters</strong>, a guide to Biopython. The site states what is unfinished as well as what is finished. See <a href=\"projects.html\">Projects</a> and <a href=\"writing.html\">Writing</a>."
     },
     {
       keys: ["research", "interests", "interest", "directions", "direction",
@@ -91,7 +93,7 @@
              "not claimed", "what is not claimed", "project limitations",
              "dataset limitations", "model artifact", "deployment", "generalizable",
              "generalization", "external validation", "wet lab", "wet-lab"],
-      answer: "The site does not claim publications, awards, research positions, or validated biological results. <strong>ai-biotech</strong> now has an internally evaluated LightGBM baseline and a runnable model artifact, but no external validation, no generalizable predictive model, and no wet-lab or experimental validation. The 0.5 threshold is a display convention, not a validated cutoff. See <a href=\"projects.html\">Projects</a> for the full list of what is not claimed."
+      answer: "The site does not claim publications, awards, research positions, or validated biological results. <strong>ai-biotech</strong> now has an internally evaluated LightGBM baseline and a runnable model artifact, but no external validation, no generalizable predictive model, and no wet-lab or experimental validation. The 0.5 threshold is a display convention, not a validated cutoff. <strong>melanin-biotech</strong> reports in silico estimates only; no production MD, DFT, or experimental validation has been run. See <a href=\"projects.html\">Projects</a> for the full list of what is not claimed."
     },
     {
       keys: ["clock", "clocks", "time", "times", "what time", "local time",
