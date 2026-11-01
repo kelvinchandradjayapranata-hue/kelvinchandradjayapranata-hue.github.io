@@ -53,12 +53,12 @@
     <!-- ================= Project windows ================= -->
     <!-- Native <details> so the windows open and close without scripting.
          The outer window holds one nested window per project. -->
-    <details class="window" data-project-windows>
+    <details class="window">
       <summary class="window__bar">
         <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
         <span class="window__heading">
           <span class="window__title">Project windows</span>
-          <span class="window__subtitle">ai-biotech and melanin-biotech &middot; hover or click to open</span>
+          <span class="window__subtitle">ai-biotech and melanin-biotech &middot; click to open either project</span>
         </span>
         <span class="window__aside">
           <span class="window__count" aria-hidden="true">2</span>
@@ -73,7 +73,7 @@
       <div class="window__body">
 
         <!-- ================= ai-biotech ================= -->
-        <details class="window window--nested">
+        <details class="window window--nested" id="ai-biotech">
           <summary class="window__bar">
             <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
             <span class="window__heading">
@@ -345,7 +345,7 @@
         </details>
 
         <!-- ================= melanin-biotech ================= -->
-        <details class="window window--nested">
+        <details class="window window--nested" id="melanin-biotech">
           <summary class="window__bar">
             <span class="window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
             <span class="window__heading">

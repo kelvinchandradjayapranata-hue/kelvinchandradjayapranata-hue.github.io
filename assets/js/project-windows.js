@@ -1,32 +1,38 @@
 /* ==========================================================================
-   Project windows — hover enhancement for projects.html
+   Project windows — deep links on projects.html
    ==========================================================================
 
-   On devices with a real pointer, pointing at the outer Projects window opens
-   it so the two project windows appear below without a click. The native
-   <details> summary still handles click, keyboard, and touch, so the page
-   works without this file.
-
-   Hovering only opens. Closing stays with the native summary toggle, so the
-   two behaviours never fight each other while the pointer is inside. */
+   A link such as projects.html#melanin-biotech opens the outer Projects
+   window and the named project window, then brings it into view. Without
+   this file the hash still reaches the window title; the visitor just opens
+   it with the native <details> summary. */
 
 (function () {
   "use strict";
 
-  var outer = document.querySelector("[data-project-windows]");
-  if (!outer || outer.tagName !== "DETAILS") {
+  var id = window.location.hash.slice(1);
+  if (!id) {
     return;
   }
 
-  var canHover =
-    window.matchMedia && window.matchMedia("(hover: hover)").matches;
-  if (!canHover) {
+  var target;
+  try {
+    target = document.getElementById(decodeURIComponent(id));
+  } catch (error) {
     return;
   }
 
-  outer.addEventListener("pointerenter", function () {
-    if (!outer.open) {
-      outer.open = true;
+  if (!target || target.tagName !== "DETAILS") {
+    return;
+  }
+
+  var node = target;
+  while (node) {
+    if (node.tagName === "DETAILS") {
+      node.open = true;
     }
-  });
+    node = node.parentElement ? node.parentElement.closest("details") : null;
+  }
+
+  target.scrollIntoView({ block: "start" });
 })();

@@ -230,10 +230,28 @@
           <p class="card__desc">Academic background, what I focus on, and how I approach the work.</p>
         </a>
 
-        <a class="card card--link" href="projects.html">
-          <p class="card__title">Projects</p>
-          <p class="card__desc">Two project windows — ai-biotech and melanin-biotech — and what each one deliberately does not claim.</p>
-        </a>
+        <div class="card card--menu">
+          <a class="card__main" href="projects.html">
+            <p class="card__title">Projects</p>
+            <p class="card__desc">Two project windows — hover or focus to choose ai-biotech or melanin-biotech.</p>
+          </a>
+
+          <div class="card__menu">
+            <p class="card__menu-title">Project windows</p>
+
+            <a class="mini-window" href="projects.html#ai-biotech">
+              <span class="mini-window__title">ai-biotech</span>
+              <span class="mini-window__desc">Audited AlphaFold dataset, frozen benchmark, internal LightGBM baseline. Internal evaluation only, no external validation.</span>
+              <span class="mini-window__go">Open project &rarr;</span>
+            </a>
+
+            <a class="mini-window" href="projects.html#melanin-biotech">
+              <span class="mini-window__title">melanin-biotech</span>
+              <span class="mini-window__desc">Fungal radiosynthesis scaffold: reduced flux-balance model, ortholog check, docking pilot. No production MD, DFT, or experiments.</span>
+              <span class="mini-window__go">Open project &rarr;</span>
+            </a>
+          </div>
+        </div>
 
         <a class="card card--link" href="research.html">
           <p class="card__title">Research Interests</p>
