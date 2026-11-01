@@ -379,6 +379,29 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   box-shadow: 0 8px 24px rgba(18, 34, 28, .14);
 }
 
+/* The transparent character clip stands on the right side of the scene. It
+   is decorative, so it never takes pointer events. The poster from the
+   markup is what remains when scripting, a wide viewport, or reduced motion
+   means the clip itself is not loaded. */
+.hero__character {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1.5rem, 16vw, 16rem);
+  bottom: calc(var(--hero-marquee-height) + clamp(0.5rem, 1.5vw, 1rem));
+  width: auto;
+  height: min(21rem, 82%);
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgba(10, 22, 14, .22));
+}
+
+@media (max-width: 77.999rem) {
+  .hero__character { display: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero__character { filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .5)); }
+}
+
 /* The hero window previews the two projects in a panel that hangs below the
    frame on hover or keyboard focus, mirroring the Explore card menu. The
    panel sits outside .hero so the hero's overflow: hidden cannot clip it,
@@ -518,6 +541,7 @@ main { display: block; position: relative; padding-block: 2.6rem 4rem; }
   .hero { padding-bottom: clamp(1.5rem, 3vw, 2.2rem); }
   .hero__marquee { display: none !important; }
   .hero__voice-toggle { display: none !important; }
+  .hero__character { display: none !important; }
 }
 
 /* --- Hero voice clip ----------------------------------------------------- */

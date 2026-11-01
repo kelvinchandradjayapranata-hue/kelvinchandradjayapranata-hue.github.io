@@ -42,9 +42,12 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/site-guide.js         Homepage fixed-answer guide (no network calls)
 │   ├── js/hero-voice.js         Homepage AI voice clip, started on first interaction
 │   ├── js/project-windows.js    Opens the project named in the URL hash
+│   ├── js/hero-character.js     Loads the transparent hero clip on wide screens
+│   ├── video/hero-character.webm  VP9 alpha clip (320×568, 8 s, looping)
 │   └── img/
 │       ├── favicon.svg SVG favicon
 │       ├── gallery/    Eleven 1000×750 gallery images (metadata stripped)
+│       ├── hero-character-poster.png  Still frame for the hero clip
 │       └── profile.jpg Portrait in the home hero (560 px, metadata stripped)
 ├── .gitignore          Excludes local tooling config
 ├── .nojekyll           Prevents Jekyll processing on GitHub Pages
@@ -74,6 +77,12 @@ any directory, subpath, or host without modification.
   live wall clocks (Xi'an and WIB) at the top-right outside the hero frame — in the outer right
   margin on wide screens, just above the hero on narrower ones — each with a digital readout;
   without scripting the hands rest at 10:10.
+- **Hero character.** A transparent VP9 WebM (320×568, 8 s, palindrome loop) stands on the right
+  side of the home hero above the marquee. `hero-character.js` loads it only at 78 rem and wider,
+  and only when reduced motion is not requested; otherwise the transparent PNG poster shows.
+  WebKit-based browsers keep the poster because they play VP9 without compositing its alpha, and
+  phones never download the clip. The green-screen source frames stay in the git-ignored `image/`
+  folder; the published clip is the chroma-keyed derivative.
 - **Countdown.** A compact calendar card in the outer left margin mirrors the clocks on the
   right; on narrower screens it sits above the hero, level with the clocks. It counts calendar
   days to 17 January 2027 in Xi'an time (UTC+8) and updates at Xi'an midnight. Without scripting

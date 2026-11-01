@@ -21,6 +21,7 @@
 <script src="assets/js/wall-clocks.js" defer></script>
 <script src="assets/js/countdown.js" defer></script>
 <script src="assets/js/hero-voice.js" defer></script>
+<script src="assets/js/hero-character.js" defer></script>
 <script src="assets/js/site-guide.js" defer></script>
 </head>
 <body>
@@ -158,6 +159,15 @@
           </div>
         </div>
       </div>
+
+      <!-- Transparent character clip. The poster is what shows without
+           scripting; hero-character.js loads the WebM on wide screens. -->
+      <video class="hero__character" data-hero-character
+             width="320" height="568"
+             poster="assets/img/hero-character-poster.png"
+             muted loop playsinline preload="none"
+             disablepictureinpicture
+             aria-hidden="true"></video>
 
       <!-- The voice clip has no play button: it starts on the first
            interaction with the page. The mute toggle stays hidden until
