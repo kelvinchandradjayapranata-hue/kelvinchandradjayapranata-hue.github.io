@@ -1,0 +1,12 @@
+AlphaFold Server Output Terms of Use
+====================================
+
+The protein structure in this folder (ubiquitin-alphafold.cif) is output from
+the AlphaFold Server, operated by Google LLC. It is displayed here for
+non-commercial, academic purposes only.
+
+This information is subject to AlphaFold Server Output Terms of Use found at
+https://alphafoldserver.com/output-terms
+
+The structure file is redistributed unmodified, together with this notice.
+It is a computational prediction, not an experimentally determined structure.

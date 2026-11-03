@@ -18,6 +18,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/project-windows.js" defer></script>
+<script src="assets/js/protein-viewer.js" defer></script>
 </head>
 <body>
 
@@ -139,6 +140,143 @@
         <dt>Language</dt>
         <dd>Python 3.12.10</dd>
       </dl>
+
+      <h3>Interactive structure viewer</h3>
+      <p>
+        The viewer below loads the project's reference ubiquitin prediction: the actual
+        mmCIF coordinates from the AlphaFold Server run, drawn directly rather than
+        approximated by a decorative model.
+      </p>
+
+      <div class="protein-viewer" data-protein-viewer
+           data-structure="assets/data/ubiquitin-alphafold.cif">
+        <div class="protein-viewer__stage" data-protein-viewer-stage>
+          <div class="protein-viewer__canvas" data-protein-viewer-canvas
+               aria-hidden="true"></div>
+          <p class="protein-viewer__status" data-protein-viewer-status role="status">Interactive view loads when JavaScript is enabled.</p>
+          <div class="protein-viewer__fallback" data-protein-viewer-fallback hidden>
+            <strong>Interactive 3D view unavailable</strong>
+            <span data-protein-viewer-fallback-text>The structure facts are still listed here.</span>
+          </div>
+        </div>
+
+        <div class="protein-viewer__toolbar">
+          <div class="protein-viewer__controls">
+            <div class="protein-viewer__group" role="group" aria-label="Representation">
+              <span class="protein-viewer__group-label" aria-hidden="true">View</span>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-rep="cartoon" aria-pressed="true">Cartoon</button>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-rep="surface" aria-pressed="false">Surface</button>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-rep="stick" aria-pressed="false">Stick</button>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-rep="line" aria-pressed="false">Line</button>
+            </div>
+            <div class="protein-viewer__group" role="group" aria-label="Coloring">
+              <span class="protein-viewer__group-label" aria-hidden="true">Color</span>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-color="theme" aria-pressed="true">Theme</button>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-color="plddt" aria-pressed="false">pLDDT</button>
+              <button class="protein-viewer__toggle" type="button" disabled
+                      data-color="rainbow" aria-pressed="false">Rainbow</button>
+            </div>
+          </div>
+          <p class="protein-viewer__hint">
+            Drag to rotate &middot; scroll or pinch to zoom &middot; right-drag or two
+            fingers to pan &middot; click a residue to inspect it.
+          </p>
+          <button class="protein-viewer__reset" type="button" disabled
+                  data-protein-viewer-reset>Reset view</button>
+        </div>
+
+        <div class="protein-viewer__meta">
+          <p class="protein-viewer__meta-title">Structure facts</p>
+          <dl class="protein-viewer__facts">
+            <dt>Protein</dt>
+            <dd>Ubiquitin (human)</dd>
+            <dt>Identifier</dt>
+            <dd><code>AlphaFold Server entry 79e3bca5d73d074</code></dd>
+            <dt>Length</dt>
+            <dd>76 amino acids &middot; chain A</dd>
+            <dt>Source</dt>
+            <dd>AlphaFold Server prediction</dd>
+            <dt>Method</dt>
+            <dd>AlphaFold 3</dd>
+            <dt>Format</dt>
+            <dd>mmCIF &middot; 602 atoms</dd>
+            <dt>pLDDT</dt>
+            <dd>mean 95.31 &middot; range 53.2&ndash;98.75</dd>
+            <dt>UniProt</dt>
+            <dd>Not recorded in the source repository</dd>
+          </dl>
+
+          <div class="protein-viewer__selection">
+            <p class="protein-viewer__meta-title">Selected residue</p>
+
+            <div class="protein-viewer__selector">
+              <label class="protein-viewer__selector-label"
+                     for="protein-viewer-residue">Jump to residue</label>
+              <select class="protein-viewer__select" id="protein-viewer-residue"
+                      data-protein-viewer-residue disabled>
+                <option value="">Select a residue&hellip;</option>
+              </select>
+            </div>
+
+            <div class="protein-viewer__selection-live"
+                 data-protein-viewer-selection-live
+                 aria-live="polite" aria-atomic="true">
+              <p class="protein-viewer__selection-empty" data-protein-viewer-selection-empty>Click a residue in the structure, or choose one above.</p>
+              <dl class="protein-viewer__facts protein-viewer__selection-facts"
+                  data-protein-viewer-selection-facts hidden>
+                <dt>Residue</dt>
+                <dd data-selection-resn>&mdash;</dd>
+                <dt>Number</dt>
+                <dd data-selection-resi>&mdash;</dd>
+                <dt>Chain</dt>
+                <dd data-selection-chain>&mdash;</dd>
+                <dt>pLDDT</dt>
+                <dd data-selection-plddt>&mdash;</dd>
+              </dl>
+            </div>
+
+            <button class="protein-viewer__clear" type="button"
+                    data-protein-viewer-clear disabled>Clear selection</button>
+          </div>
+
+          <div class="protein-viewer__legends">
+            <ul class="protein-viewer__legend" data-legend="theme">
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--helix"></span>helix</li>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--strand"></span>strand</li>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--loop"></span>loop</li>
+            </ul>
+            <ul class="protein-viewer__legend" data-legend="plddt" hidden>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--very-high"></span>&ge;90 very high</li>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--confident"></span>70&ndash;89.99 confident</li>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--low"></span>50&ndash;69.99 low</li>
+              <li><span class="protein-viewer__swatch protein-viewer__swatch--very-low"></span>&lt;50 very low</li>
+            </ul>
+            <div class="protein-viewer__legend protein-viewer__legend--rainbow"
+                 data-legend="rainbow" hidden>
+              <span aria-hidden="true">N</span>
+              <span class="protein-viewer__rainbow-bar" aria-hidden="true"></span>
+              <span aria-hidden="true">C</span>
+              <span class="visually-hidden">Rainbow from the N-terminus to the C-terminus</span>
+            </div>
+          </div>
+
+          <p class="protein-viewer__note">
+            A predicted structure, not an experimental measurement. pLDDT is model
+            confidence, not biological truth; it is read from the CA atom B-factor
+            column in the bands above. Surface is a solvent-excluded (SES) envelope,
+            not a binding pocket or a functional annotation; above 4,000 atoms the
+            viewer asks before computing it. Structure output is subject to
+            the <a href="assets/data/ALPHAFOLD-SERVER-OUTPUT-TERMS.txt">AlphaFold Server
+            output terms</a>; rendered with <a href="assets/vendor/3Dmol-LICENSE.txt">3Dmol.js</a> (BSD-3-Clause).
+          </p>
+        </div>
+      </div>
 
       <h3>What has been built</h3>
       <div class="table-wrap">

@@ -1530,3 +1530,320 @@ tbody tr:last-child td { border-bottom: 0; }
 .stack-sm > * + * { margin-top: .6rem; }
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
+
+/* --- Protein viewer ------------------------------------------------------ */
+
+/* A deliberately dark instrument panel inside the page, kept on its own
+   palette in both themes. The ribbon is coloured by secondary structure:
+   cyan helices, gold strands, steel loops. The metadata column repeats every
+   fact in text, so the canvas is an enhancement rather than the only source. */
+
+.protein-viewer {
+  --pv-bg:    #08111c;
+  --pv-bg-2:  #0c1826;
+  --pv-line:  rgba(124, 214, 226, .20);
+  --pv-ink:   #e2f2f5;
+  --pv-muted: #93b3c0;
+  --pv-cyan:  #3fe0d0;
+  --pv-gold:  #f3c76b;
+
+  display: grid;
+  grid-template-areas: "stage" "bar" "meta";
+  margin: 1.6rem 0;
+  border: 1px solid var(--pv-line);
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+  background: var(--pv-bg);
+  color: var(--pv-ink);
+}
+.protein-viewer a { color: var(--pv-cyan); }
+.protein-viewer a:focus-visible { outline: 2px solid var(--pv-cyan); outline-offset: 2px; }
+
+.protein-viewer__stage {
+  grid-area: stage;
+  position: relative;
+  height: clamp(19rem, 58vw, 26rem);
+  background: radial-gradient(120% 90% at 50% 8%, #102233 0%, #08111c 62%);
+  border-bottom: 1px solid var(--pv-line);
+}
+
+.protein-viewer__canvas { position: absolute; inset: 0; }
+.protein-viewer__canvas canvas { display: block; }
+
+.protein-viewer__status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1.4rem clamp(1rem, 8%, 3.5rem);
+  background: rgba(8, 17, 28, .68);
+  color: var(--pv-ink);
+  font-size: .82rem;
+  line-height: 1.55;
+  text-align: center;
+}
+.protein-viewer__status[hidden] { display: none; }
+
+.protein-viewer__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: .35rem;
+  padding: 1.4rem;
+  color: var(--pv-muted);
+  font-size: .84rem;
+  line-height: 1.55;
+  text-align: center;
+}
+.protein-viewer__fallback[hidden] { display: none; }
+.protein-viewer__fallback strong {
+  display: block;
+  color: var(--pv-ink);
+  font-size: .95rem;
+}
+
+.protein-viewer__toolbar {
+  grid-area: bar;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem .9rem;
+  padding: .6rem .9rem;
+  border-bottom: 1px solid var(--pv-line);
+  background: var(--pv-bg-2);
+}
+
+.protein-viewer__controls {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  gap: .4rem 1.1rem;
+}
+
+.protein-viewer__group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .25rem;
+}
+
+.protein-viewer__group-label {
+  margin-right: .15rem;
+  color: var(--pv-muted);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.protein-viewer__toggle {
+  padding: .24rem .55rem;
+  border: 1px solid rgba(124, 214, 226, .28);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pv-muted);
+  font: inherit;
+  font-size: .71rem;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.protein-viewer__toggle:hover {
+  border-color: rgba(63, 224, 208, .5);
+  color: var(--pv-cyan);
+}
+.protein-viewer__toggle[aria-pressed="true"] {
+  border-color: rgba(63, 224, 208, .55);
+  background: rgba(63, 224, 208, .14);
+  color: var(--pv-cyan);
+}
+.protein-viewer__toggle:disabled { opacity: .45; cursor: default; }
+.protein-viewer__toggle:focus-visible {
+  outline: 2px solid var(--pv-cyan);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.protein-viewer__hint {
+  flex: 1 1 12rem;
+  margin: 0;
+  color: var(--pv-muted);
+  font-size: .73rem;
+  line-height: 1.45;
+}
+
+.protein-viewer__reset,
+.protein-viewer__clear {
+  flex: 0 0 auto;
+  padding: .33rem .7rem;
+  border: 1px solid rgba(124, 214, 226, .35);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pv-cyan);
+  font: inherit;
+  font-size: .75rem;
+  font-weight: 650;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.protein-viewer__reset:hover,
+.protein-viewer__clear:hover { background: rgba(63, 224, 208, .12); }
+.protein-viewer__reset:disabled,
+.protein-viewer__clear:disabled { opacity: .45; cursor: default; }
+.protein-viewer__reset:focus-visible,
+.protein-viewer__clear:focus-visible {
+  outline: 2px solid var(--pv-cyan);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.protein-viewer__clear {
+  border-color: rgba(255, 79, 216, .45);
+  color: #ff8fe4;
+}
+.protein-viewer__clear:hover { background: rgba(255, 79, 216, .12); }
+.protein-viewer__clear:focus-visible { outline-color: #ff8fe4; }
+
+.protein-viewer__meta {
+  grid-area: meta;
+  padding: 1rem 1.05rem 1.15rem;
+  background: var(--pv-bg-2);
+  font-size: .82rem;
+  line-height: 1.55;
+}
+
+.protein-viewer__meta-title {
+  margin: 0 0 .6rem;
+  color: var(--pv-gold);
+  font-size: .7rem;
+  font-weight: 650;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.protein-viewer__facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .3rem .8rem;
+  margin: 0 0 .8rem;
+}
+.protein-viewer__facts dt { color: var(--pv-muted); font-weight: 500; }
+.protein-viewer__facts dd { margin: 0; color: var(--pv-ink); }
+.protein-viewer__facts code {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: .73rem;
+  color: var(--pv-cyan);
+  word-break: break-all;
+}
+
+.protein-viewer__selection {
+  margin: 0 0 .85rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--pv-line);
+}
+.protein-viewer__selection .protein-viewer__meta-title { margin-bottom: .4rem; }
+.protein-viewer__selection-empty {
+  margin: 0 0 .55rem;
+  color: var(--pv-muted);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+.protein-viewer__selection-facts { margin-bottom: .6rem; }
+
+.protein-viewer__selector { margin: 0 0 .6rem; }
+.protein-viewer__selector-label {
+  display: block;
+  margin-bottom: .2rem;
+  color: var(--pv-muted);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.protein-viewer__select {
+  width: 100%;
+  padding: .38rem .5rem;
+  border: 1px solid rgba(124, 214, 226, .35);
+  border-radius: 8px;
+  background: rgba(8, 17, 28, .85);
+  color: var(--pv-ink);
+  font: inherit;
+  font-size: .8rem;
+  color-scheme: dark;
+}
+.protein-viewer__select:focus-visible {
+  outline: 2px solid var(--pv-cyan);
+  outline-offset: 2px;
+}
+.protein-viewer__select:disabled { opacity: .45; cursor: default; }
+
+.protein-viewer__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .8rem;
+  margin: 0 0 .7rem;
+  padding: 0;
+  list-style: none;
+  color: var(--pv-muted);
+  font-size: .71rem;
+}
+/* Component display rules would otherwise beat the hidden attribute. */
+.protein-viewer__legend[hidden],
+.protein-viewer__facts[hidden] { display: none; }
+.protein-viewer__legend li { display: inline-flex; align-items: center; gap: .3rem; }
+.protein-viewer__swatch {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 50%;
+  background: currentColor;
+  /* A hairline ring keeps the dark-blue >=90 swatch legible on navy. */
+  box-shadow: 0 0 0 1px rgba(226, 242, 245, .45);
+}
+.protein-viewer__swatch--helix { color: var(--pv-cyan); }
+.protein-viewer__swatch--strand { color: var(--pv-gold); }
+.protein-viewer__swatch--loop { color: #6f9fb5; }
+
+/* The AlphaFold pLDDT bands, used exactly for the confidence colouring. */
+.protein-viewer__swatch--very-high { color: #0053d6; }
+.protein-viewer__swatch--confident { color: #65cbf3; }
+.protein-viewer__swatch--low { color: #ffdb13; }
+.protein-viewer__swatch--very-low { color: #ff7d45; }
+
+.protein-viewer__legend--rainbow {
+  align-items: center;
+  width: 100%;
+  gap: .45rem;
+}
+.protein-viewer__legend--rainbow span { font-size: .71rem; }
+.protein-viewer__rainbow-bar {
+  flex: 1 1 auto;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg,
+    hsl(240, 85%, 62%),
+    hsl(200, 85%, 62%),
+    hsl(160, 85%, 62%),
+    hsl(120, 85%, 62%),
+    hsl(80, 85%, 62%),
+    hsl(40, 85%, 62%),
+    hsl(0, 85%, 62%));
+}
+
+.protein-viewer__note {
+  margin: 0;
+  color: var(--pv-muted);
+  font-size: .71rem;
+  line-height: 1.5;
+}
+
+/* The project window keeps its prose measure, so the viewer stays stacked:
+   the stage gets the full column width, and the facts sit underneath rather
+   than squeezing both into a split that reads as a sidebar. */
+
+@media (max-width: 34rem) {
+  .protein-viewer__facts { grid-template-columns: 1fr; gap: .1rem; }
+  .protein-viewer__facts dd { margin-bottom: .45rem; }
+}
