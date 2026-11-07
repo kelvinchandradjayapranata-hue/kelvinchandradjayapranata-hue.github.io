@@ -5,7 +5,9 @@ Northwestern Polytechnical University (NPU/NWPU), Xi'an, China — covering AI f
 (AI4Bio), computational biology, and protein structure analysis.
 
 Built as plain HTML, CSS, and a few small self-hosted JavaScript files for GitHub Pages. **No
-frameworks, no build step, no external fonts, and no third-party requests.**
+frameworks, no build step, and no external fonts.** Every page is self-contained except
+`atlas.html`, which can query the owner's separate public read-only Atlas API when
+`assets/js/atlas-config.js` is configured.
 
 ---
 
@@ -30,12 +32,14 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 ├── about.html          Academic background, focus, working approach
 ├── projects.html       ai-biotech and melanin-biotech — click-to-open project windows
 ├── research.html       Research interests and directions
+├── atlas.html          Public read-only view of the NPU Research Atlas
 ├── writing.html        Technical writing — Biopython guide
 ├── gallery.html        Gallery — laboratory and everyday photographs
 ├── contact.html        GitHub and LinkedIn
 ├── 404.html            Not-found page
 ├── assets/
-│   ├── css/style.css   Single stylesheet (design tokens, light + dark)
+│   ├── css/style.css   Site stylesheet (design tokens, light + dark)
+│   ├── css/atlas.css   Atlas page components, scoped to .atlas-page
 │   ├── js/hero-voxel-forest.js  Optional homepage WebGL voxel forest
 │   ├── js/wall-clocks.js        Homepage wall clocks for Xi'an and WIB
 │   ├── js/countdown.js          Homepage countdown to 17 January 2027
@@ -43,6 +47,11 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/hero-voice.js         Homepage AI voice clip, started on first interaction
 │   ├── js/project-windows.js    Opens the project named in the URL hash
 │   ├── js/hero-character.js     Loads the transparent hero clip on wide screens
+│   ├── js/atlas.js              Atlas search, detail panel, and graph rendering
+│   ├── js/atlas-config.js       Optional live API origin (empty = static snapshot)
+│   ├── data/atlas-public.json   Static allowlisted Atlas snapshot
+│   ├── vendor/cytoscape.min.js  Graph library, vendored locally
+│   ├── vendor/cytoscape-LICENSE.txt
 │   ├── video/hero-character.webm  VP9 alpha clip (320×568, 8 s, looping)
 │   └── img/
 │       ├── favicon.svg SVG favicon
@@ -70,7 +79,8 @@ any directory, subpath, or host without modification.
 
 ## Design notes
 
-- **One stylesheet.** `assets/css/style.css` holds all design tokens and components.
+- **Two stylesheets, one design system.** `assets/css/style.css` holds every site-wide token and
+  component; `assets/css/atlas.css` adds only Atlas-specific components scoped to `.atlas-page`.
 - **JavaScript is optional.** Navigation wraps responsively instead of using a hamburger menu, so
   all pages work with scripting disabled. The homepage hero adds a small, self-hosted WebGL scene
   when available and falls back to a CSS gradient otherwise. The homepage also shows two small
@@ -114,6 +124,31 @@ any directory, subpath, or host without modification.
   focus outlines, and text contrast checked in both themes.
 - **System fonts only**, so there are no web-font downloads and no layout shift.
 
+## Atlas page
+
+`atlas.html` is a public, read-only client for the NPU Research Atlas. It never writes data and
+sends no cookies or credentials.
+
+By default it loads `assets/data/atlas-public.json`, a static projection of the same allowlisted
+public records the API would return. This keeps the page working on GitHub Pages with no server,
+no CORS, and no hosting cost. The snapshot is generated in the Atlas repository with:
+
+```bash
+python scripts/export_public_snapshot.py --db <read-only-copy.db> \
+  --out "D:\project\github.io website\assets\data\atlas-public.json"
+```
+
+The page asks for `VERIFIED` and `PENDING` records explicitly and labels every record. PENDING
+means awaiting human review and is never presented as verified. The snapshot currently contains
+273 PENDING records (0 VERIFIED), so the page is honest about the pilot's review state.
+
+To switch to live API queries instead, set `window.ATLAS_API_BASE` in
+`assets/js/atlas-config.js` to a deployed HTTPS origin, add every origin that serves the page to
+the API's `ATLAS_PUBLIC_ORIGINS` allowlist (GitHub Pages and, if used, the Netlify mirror), and
+regenerate or remove the static snapshot as appropriate. If neither source is available, the
+page shows an error notice rather than fabricating data. The graph library is vendored locally
+under `assets/vendor/`.
+
 ## Content policy
 
 Every factual claim on this site is drawn from the owner's public GitHub profile and public
@@ -129,6 +164,8 @@ repositories. The site deliberately:
   validation and that no generalizable predictive model or biological finding exists.
 - Keeps every site-guide reply traceable to a public page; no reply may invent a credential,
   result, or contact route.
+- On `atlas.html`, publishes only public OpenAlex metadata returned by the read-only Atlas API,
+  labels every evidence state, and never presents PENDING records as VERIFIED.
 
 If you change content, keep to that policy: prefer a smaller true claim over a larger flattering one.
 

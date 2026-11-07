@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Atlas — Kelvin Chandra Djayapranata</title>
+<meta name="description" content="A public, read-only view of the NPU Research Atlas: source-aware researcher, publication, and topic relationships with explicit evidence states.">
+<link rel="canonical" href="https://kelvinchandradjayapranata-hue.github.io/atlas.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Research Atlas — Kelvin Chandra Djayapranata">
+<meta property="og:description" content="A public, read-only view of the NPU Research Atlas: source-aware researcher, publication, and topic relationships with explicit evidence states.">
+<meta property="og:url" content="https://kelvinchandradjayapranata-hue.github.io/atlas.html">
+<meta property="og:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research Atlas — Kelvin Chandra Djayapranata">
+<meta name="twitter:description" content="A public, read-only view of the NPU Research Atlas: source-aware researcher, publication, and topic relationships with explicit evidence states.">
+<meta name="twitter:image" content="https://kelvinchandradjayapranata-hue.github.io/assets/img/og-image.png">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/atlas.css">
+<script src="assets/vendor/cytoscape.min.js" defer></script>
+<script src="assets/js/atlas-config.js" defer></script>
+<script src="assets/js/atlas.js" defer></script>
+</head>
+<body class="atlas-page">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">Kelvin Chandra Djayapranata</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="research.html">Research</a>
+      <a href="atlas.html" aria-current="page">Atlas</a>
+      <a href="writing.html">Writing</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container">
+
+    <div class="prose">
+      <p class="eyebrow">Research Atlas</p>
+      <h1>A source-aware map of NPU life-science research</h1>
+      <p class="lede">
+        A public, read-only view of the NPU Research Atlas. Every record carries an evidence
+        state, its provenance, and its own source. Nothing here is a publication, an award, or
+        a validated biological finding.
+      </p>
+    </div>
+
+    <div class="atlas-notice" data-atlas-notice role="status" hidden></div>
+
+    <section class="panel atlas-scope" aria-labelledby="atlas-scope-title">
+      <div class="badge-row">
+        <span class="badge">Public read-only</span>
+        <span class="badge badge--quiet">Real records only</span>
+        <span class="badge badge--quiet">DEMO excluded</span>
+      </div>
+      <h2 id="atlas-scope-title">What this page can show</h2>
+      <p>
+        The public Atlas API returns <strong>VERIFIED</strong> records by default. This page asks
+        explicitly for <strong>PENDING</strong> records as well, because the pilot is still under
+        human review, and labels every result. PENDING means <em>awaiting review</em>, not
+        verified. DEMO, REJECTED, UNKNOWN, and INFERRED records are not part of the public
+        surface.
+      </p>
+      <dl class="facts atlas-facts">
+        <dt>Verified nodes</dt>
+        <dd data-atlas-verified>&mdash;</dd>
+        <dt>Pending review</dt>
+        <dd data-atlas-pending>&mdash;</dd>
+        <dt>Real sources</dt>
+        <dd data-atlas-sources>&mdash;</dd>
+        <dt>Last updated</dt>
+        <dd data-atlas-updated>&mdash;</dd>
+      </dl>
+      <p class="small muted" data-atlas-scope-status aria-live="polite">
+        Loading the Atlas dataset summary&hellip;
+      </p>
+    </section>
+
+    <form class="atlas-toolbar" data-atlas-form>
+      <div class="atlas-field atlas-field--grow">
+        <label for="atlas-query">Search</label>
+        <input id="atlas-query" name="q" type="search" maxlength="200"
+               autocomplete="off" placeholder="Researcher, publication, or topic">
+      </div>
+      <div class="atlas-field">
+        <label for="atlas-entity">Entity</label>
+        <select id="atlas-entity" name="entity_type">
+          <option value="researcher" selected>Researchers</option>
+          <option value="publication">Publications</option>
+          <option value="topic">Topics</option>
+        </select>
+      </div>
+      <div class="atlas-field">
+        <label for="atlas-status">Evidence</label>
+        <select id="atlas-status" name="status">
+          <option value="all" selected>Verified + pending</option>
+          <option value="verified">Verified only</option>
+          <option value="pending">Pending only</option>
+        </select>
+      </div>
+      <button class="btn btn--primary atlas-submit" type="submit">Search</button>
+    </form>
+
+    <noscript>
+      <div class="panel">
+        <p class="mb-0">
+          This page needs JavaScript to query the public Atlas API. The other research pages
+          remain available without scripting.
+        </p>
+      </div>
+    </noscript>
+
+    <div class="atlas-layout">
+      <section class="atlas-panel" aria-labelledby="atlas-results-title">
+        <div class="atlas-panel__head">
+          <h2 id="atlas-results-title" class="section-title">Results</h2>
+          <p class="atlas-count" data-atlas-count aria-live="polite">&mdash;</p>
+        </div>
+        <div class="atlas-results" data-atlas-results></div>
+        <p class="atlas-empty" data-atlas-results-empty hidden>
+          No records match this search under the selected evidence scope.
+        </p>
+      </section>
+
+      <section class="atlas-panel atlas-panel--graph" aria-labelledby="atlas-graph-title">
+        <div class="atlas-panel__head">
+          <h2 id="atlas-graph-title" class="section-title">Network</h2>
+          <p class="atlas-count" data-atlas-graph-count>Select a result</p>
+        </div>
+        <div class="atlas-graph" data-atlas-graph role="img"
+             aria-label="Bounded research network graph centred on the selected record"></div>
+        <p class="atlas-empty" data-atlas-graph-empty>
+          Choose a result to render its bounded network.
+        </p>
+        <p class="atlas-hint small muted">
+          Graphs are bounded by the public API. Shared topics or publications do not establish
+          collaboration.
+        </p>
+      </section>
+    </div>
+
+    <section class="atlas-panel atlas-panel--detail" aria-labelledby="atlas-detail-title">
+      <div class="atlas-panel__head">
+        <h2 id="atlas-detail-title" class="section-title">Record</h2>
+        <p class="atlas-count" data-atlas-detail-status>&mdash;</p>
+      </div>
+      <div class="atlas-detail" data-atlas-detail></div>
+      <p class="atlas-empty" data-atlas-detail-empty>
+        Select a result to inspect its evidence state and provenance.
+      </p>
+    </section>
+
+    <div class="panel atlas-policy">
+      <h2>How to read the evidence states</h2>
+      <p>
+        <span class="atlas-badge atlas-badge--verified">VERIFIED</span>
+        means a reviewer accepted an accessible source and a stable external identifier.
+        <span class="atlas-badge atlas-badge--pending">PENDING</span>
+        means the record was imported from public metadata and is still awaiting human review.
+        A PENDING badge is never a claim of verification.
+      </p>
+      <p class="small muted mb-0">
+        Metadata is public OpenAlex data (CC0). The Atlas removes raw affiliation evidence,
+        ORCIDs, author contact fields, review notes, and acquisition paths from this public view.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Kelvin Chandra Djayapranata &middot; Undergraduate student, Northwestern Polytechnical University (NPU/NWPU), Xi'an, China.</p>
+    <p class="small">Everything on this site describes public repositories. Nothing here is a publication, an award, or a validated biological result.</p>
+    <div class="footer-links">
+      <a href="https://github.com/kelvinchandradjayapranata-hue" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://cn.linkedin.com/in/kelvin-chandra-djaya-pranata-1abb1742a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
