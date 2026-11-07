@@ -815,7 +815,11 @@
   }
 
   async function unlockStatic(password) {
-    if (dom.lockSubmit) dom.lockSubmit.disabled = true;
+    if (dom.lockSubmit) {
+      dom.lockSubmit.disabled = true;
+      dom.lockSubmit.textContent = "Unlocking…";
+    }
+    if (dom.lockForm) dom.lockForm.setAttribute("aria-busy", "true");
     if (dom.lockStatus) dom.lockStatus.textContent = "Unlocking…";
     try {
       const data = await decryptSnapshot(password);
@@ -853,7 +857,11 @@
       }
       return false;
     } finally {
-      if (dom.lockSubmit) dom.lockSubmit.disabled = false;
+      if (dom.lockSubmit) {
+        dom.lockSubmit.disabled = false;
+        dom.lockSubmit.textContent = "Unlock Atlas";
+      }
+      if (dom.lockForm) dom.lockForm.setAttribute("aria-busy", "false");
     }
   }
 
@@ -1469,6 +1477,20 @@
     if (!CONFIG.apiBase) {
       if (dom.content) dom.content.hidden = true;
       if (dom.lock) dom.lock.hidden = false;
+      if (!window.crypto || !window.crypto.subtle) {
+        if (dom.lockStatus) {
+          dom.lockStatus.textContent =
+            "This browser cannot decrypt the snapshot. Open this page in a modern browser over HTTPS.";
+        }
+        if (dom.lockSubmit) dom.lockSubmit.disabled = true;
+        return;
+      }
+      window.addEventListener("error", () => {
+        if (dom.lock && !dom.lock.hidden && dom.lockStatus) {
+          dom.lockStatus.textContent =
+            "The unlock script hit an error. Reload the page and try again.";
+        }
+      });
       bindUnlockForm();
       return;
     }

@@ -63,6 +63,9 @@
 .atlas-page .atlas-lock__status {
   min-height: 1.5em;
   margin-bottom: .8rem;
+  color: var(--text);
+  font-size: .92rem;
+  font-weight: 600;
 }
 
 .atlas-page [data-atlas-content][hidden] {
