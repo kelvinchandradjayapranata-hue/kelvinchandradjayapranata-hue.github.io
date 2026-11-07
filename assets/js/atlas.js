@@ -10,7 +10,8 @@
     maxNodes: 120,
     maxEdges: 360,
     searchDelay: 350,
-    staticUrl: "assets/data/atlas-public.json",
+    staticUrl: "assets/data/atlas-public.enc.json",
+    staticSchema: "npu-atlas-public-snapshot-encrypted/1",
   };
 
   const PUBLIC_STATUSES = new Set(["VERIFIED", "PENDING"]);
@@ -40,6 +41,7 @@
   let staticMode = false;
   let staticData = null;
   let staticIndex = null;
+  let eventsBound = false;
 
   function byData(name) {
     return document.querySelector(`[data-atlas-${name}]`);
@@ -65,6 +67,13 @@
     dom.detail = byData("detail");
     dom.detailEmpty = byData("detail-empty");
     dom.detailStatus = byData("detail-status");
+    dom.lock = byData("lock");
+    dom.lockForm = byData("unlock-form");
+    dom.password = byData("password");
+    dom.lockStatus = byData("lock-status");
+    dom.lockSubmit = byData("unlock-submit");
+    dom.content = byData("content");
+    dom.lockButton = byData("lock-button");
   }
 
   function element(tag, className, text) {
@@ -732,21 +741,134 @@
     throw new Error("Static snapshot does not provide this endpoint.");
   }
 
-  async function loadStaticSnapshot() {
+  function base64ToBytes(value) {
+    const binary = window.atob(String(value || ""));
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) {
+      bytes[index] = binary.charCodeAt(index);
+    }
+    return bytes;
+  }
+
+  async function decryptSnapshot(password) {
+    if (!window.crypto || !window.crypto.subtle) {
+      throw new Error("Password unlock requires HTTPS or localhost in a modern browser.");
+    }
     const response = await fetch(CONFIG.staticUrl, {
       headers: { Accept: "application/json" },
       credentials: "omit",
+      cache: "no-store",
     });
     if (!response.ok) {
-      throw new Error(`Static snapshot request failed (${response.status}).`);
+      throw new Error(`Encrypted snapshot request failed (${response.status}).`);
     }
-    const data = await response.json();
+    const envelope = await response.json();
+    const kdf = envelope && envelope.kdf;
+    const cipher = envelope && envelope.cipher;
+    if (
+      !envelope ||
+      envelope.schema !== CONFIG.staticSchema ||
+      !kdf ||
+      kdf.name !== "PBKDF2" ||
+      kdf.hash !== "SHA-256" ||
+      !cipher ||
+      cipher.name !== "AES-GCM"
+    ) {
+      throw new Error("Encrypted snapshot has an unsupported format.");
+    }
+    const iterations = Number(kdf.iterations);
+    if (!Number.isInteger(iterations) || iterations < 100000) {
+      throw new Error("Encrypted snapshot has invalid PBKDF2 parameters.");
+    }
+    const salt = base64ToBytes(kdf.salt);
+    const iv = base64ToBytes(cipher.iv);
+    const ciphertext = base64ToBytes(envelope.ciphertext);
+    const keyMaterial = await window.crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(password),
+      "PBKDF2",
+      false,
+      ["deriveKey"]
+    );
+    const key = await window.crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
+      keyMaterial,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+    const plaintext = await window.crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv,
+        additionalData: new TextEncoder().encode(envelope.aad || ""),
+        tagLength: Number(cipher.tagLength) || 128,
+      },
+      key,
+      ciphertext
+    );
+    const data = JSON.parse(new TextDecoder().decode(plaintext));
     if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.edges)) {
-      throw new Error("Static snapshot is malformed.");
+      throw new Error("Decrypted snapshot is malformed.");
     }
-    staticData = data;
-    staticMode = true;
-    buildStaticIndex();
+    return data;
+  }
+
+  async function unlockStatic(password) {
+    if (dom.lockSubmit) dom.lockSubmit.disabled = true;
+    if (dom.lockStatus) dom.lockStatus.textContent = "Unlocking…";
+    try {
+      const data = await decryptSnapshot(password);
+      staticData = data;
+      staticMode = true;
+      buildStaticIndex();
+      if (dom.password) dom.password.value = "";
+      if (dom.lock) dom.lock.hidden = true;
+      if (dom.content) dom.content.hidden = false;
+      bindEvents();
+      if (dom.lockStatus) dom.lockStatus.textContent = "";
+      try {
+        await loadDataset();
+      } catch (error) {
+        renderApiError(error);
+      }
+      await runSearch();
+      return true;
+    } catch (error) {
+      staticData = null;
+      staticMode = false;
+      staticIndex = null;
+      if (dom.lock) dom.lock.hidden = false;
+      if (dom.content) dom.content.hidden = true;
+      if (dom.password) {
+        dom.password.value = "";
+        dom.password.focus();
+      }
+      const wrongPassword =
+        error && (error.name === "OperationError" || error.name === "DataError");
+      if (dom.lockStatus) {
+        dom.lockStatus.textContent = wrongPassword
+          ? "Incorrect password. Try again."
+          : `Could not unlock: ${error.message}`;
+      }
+      return false;
+    } finally {
+      if (dom.lockSubmit) dom.lockSubmit.disabled = false;
+    }
+  }
+
+  function bindUnlockForm() {
+    if (!dom.lockForm || dom.lockForm.dataset.bound === "1") return;
+    dom.lockForm.dataset.bound = "1";
+    dom.lockForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const password = dom.password ? dom.password.value : "";
+      if (!password) {
+        if (dom.lockStatus) dom.lockStatus.textContent = "Enter the password.";
+        return;
+      }
+      unlockStatic(password);
+    });
   }
 
   function formatNumber(value) {
@@ -1323,7 +1445,8 @@
   }
 
   function bindEvents() {
-    if (!dom.form) return;
+    if (eventsBound || !dom.form) return;
+    eventsBound = true;
     dom.form.addEventListener("submit", (event) => {
       event.preventDefault();
       runSearch();
@@ -1336,30 +1459,29 @@
         searchTimer = window.setTimeout(runSearch, CONFIG.searchDelay);
       });
     }
+    if (dom.lockButton) {
+      dom.lockButton.addEventListener("click", () => window.location.reload());
+    }
   }
 
   async function init() {
     cacheDom();
     if (!CONFIG.apiBase) {
-      try {
-        await loadStaticSnapshot();
-      } catch (error) {
-        renderUnavailable(
-          `The static Atlas snapshot could not be loaded. ${error.message} ` +
-          "Regenerate assets/data/atlas-public.json with scripts/export_public_snapshot.py."
-        );
-        return;
-      }
-    } else {
-      if (!apiOriginValid(CONFIG.apiBase)) {
-        renderNoticeForConfig("The configured Atlas API origin is not a valid HTTP(S) URL.");
-        return;
-      }
-      const apiProtocol = new URL(CONFIG.apiBase).protocol;
-      if (window.location.protocol === "https:" && apiProtocol !== "https:") {
-        renderNoticeForConfig("This page is served over HTTPS, so the Atlas API endpoint must also use HTTPS.");
-        return;
-      }
+      if (dom.content) dom.content.hidden = true;
+      if (dom.lock) dom.lock.hidden = false;
+      bindUnlockForm();
+      return;
+    }
+    if (dom.lock) dom.lock.hidden = true;
+    if (dom.content) dom.content.hidden = false;
+    if (!apiOriginValid(CONFIG.apiBase)) {
+      renderNoticeForConfig("The configured Atlas API origin is not a valid HTTP(S) URL.");
+      return;
+    }
+    const apiProtocol = new URL(CONFIG.apiBase).protocol;
+    if (window.location.protocol === "https:" && apiProtocol !== "https:") {
+      renderNoticeForConfig("This page is served over HTTPS, so the Atlas API endpoint must also use HTTPS.");
+      return;
     }
     bindEvents();
     try {

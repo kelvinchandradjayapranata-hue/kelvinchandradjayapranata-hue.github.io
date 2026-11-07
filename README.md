@@ -49,7 +49,7 @@ Pages configuration: branch `main`, folder `/`, HTTPS enforced.
 │   ├── js/hero-character.js     Loads the transparent hero clip on wide screens
 │   ├── js/atlas.js              Atlas search, detail panel, and graph rendering
 │   ├── js/atlas-config.js       Optional live API origin (empty = static snapshot)
-│   ├── data/atlas-public.json   Static allowlisted Atlas snapshot
+│   ├── data/atlas-public.enc.json  Encrypted static Atlas snapshot
 │   ├── vendor/cytoscape.min.js  Graph library, vendored locally
 │   ├── vendor/cytoscape-LICENSE.txt
 │   ├── video/hero-character.webm  VP9 alpha clip (320×568, 8 s, looping)
@@ -129,23 +129,38 @@ any directory, subpath, or host without modification.
 `atlas.html` is a public, read-only client for the NPU Research Atlas. It never writes data and
 sends no cookies or credentials.
 
-By default it loads `assets/data/atlas-public.json`, a static projection of the same allowlisted
-public records the API would return. This keeps the page working on GitHub Pages with no server,
-no CORS, and no hosting cost. The snapshot is generated in the Atlas repository with:
+By default it loads `assets/data/atlas-public.enc.json`, an AES-GCM-encrypted projection of the
+same allowlisted public records the API would return. The password is requested in the page,
+derived into a key with PBKDF2-SHA256 (600,000 iterations), and used to decrypt the snapshot
+locally. The password is never sent to a server and is never stored. The plaintext
+`assets/data/atlas-public.json` is git-ignored and must not be committed.
+
+This keeps the page working on GitHub Pages with no server, no CORS, and no hosting cost. The
+snapshot is generated in the Atlas repository with:
 
 ```bash
 python scripts/export_public_snapshot.py --db <read-only-copy.db> \
-  --out "D:\project\github.io website\assets\data\atlas-public.json"
+  --out <temporary-plaintext.json>
+node scripts/encrypt_public_snapshot.mjs \
+  --in <temporary-plaintext.json> \
+  --out "D:\project\github.io website\assets\data\atlas-public.enc.json"
 ```
 
+The encryption command prompts for the password twice (hidden) and refuses passwords shorter
+than 12 characters. To rotate the password, re-run the command and commit the new encrypted file.
 The page asks for `VERIFIED` and `PENDING` records explicitly and labels every record. PENDING
 means awaiting human review and is never presented as verified. The snapshot currently contains
 273 PENDING records (0 VERIFIED), so the page is honest about the pilot's review state.
 
+Static-site limitation: the encrypted file is public, so anyone who obtains the password can
+read it. There are no accounts, audit logs, revocation, or server-side rate limiting. The
+previously published plaintext snapshot remains in Git history; encryption protects the current
+page, not that historical blob.
+
 To switch to live API queries instead, set `window.ATLAS_API_BASE` in
 `assets/js/atlas-config.js` to a deployed HTTPS origin, add every origin that serves the page to
 the API's `ATLAS_PUBLIC_ORIGINS` allowlist (GitHub Pages and, if used, the Netlify mirror), and
-regenerate or remove the static snapshot as appropriate. If neither source is available, the
+remove or ignore the encrypted snapshot as appropriate. If neither source is available, the
 page shows an error notice rather than fabricating data. The graph library is vendored locally
 under `assets/vendor/`.
 

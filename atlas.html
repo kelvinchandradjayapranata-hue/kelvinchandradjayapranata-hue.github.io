@@ -45,6 +45,45 @@
 <main id="main">
   <div class="container">
 
+    <section class="atlas-lock" data-atlas-lock aria-labelledby="atlas-lock-title">
+      <div class="atlas-lock__panel">
+        <p class="eyebrow">Restricted view</p>
+        <h1 id="atlas-lock-title">Unlock the Research Atlas</h1>
+        <p class="lede">
+          This Atlas view is encrypted. Enter the password to decrypt the snapshot locally
+          in your browser. The password is never sent to a server and is not stored.
+        </p>
+        <form class="atlas-lock__form" data-atlas-unlock-form>
+          <div class="atlas-field">
+            <label for="atlas-password">Password</label>
+            <input id="atlas-password" name="password" type="password"
+                   autocomplete="current-password" required data-atlas-password>
+          </div>
+          <button class="btn btn--primary atlas-submit" type="submit"
+                  data-atlas-unlock-submit>Unlock Atlas</button>
+        </form>
+        <p class="small muted atlas-lock__status" data-atlas-lock-status
+           role="status" aria-live="polite">
+          Enter the password to decrypt the public snapshot.
+        </p>
+        <p class="small muted">
+          Static-site gate: the encrypted file is public, but unreadable without the password.
+          There are no accounts, audit logs, or server-side rate limiting.
+        </p>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="panel">
+        <p class="mb-0">
+          This Atlas view needs JavaScript to decrypt the snapshot and render the network.
+          The other research pages remain available without scripting.
+        </p>
+      </div>
+    </noscript>
+
+    <div data-atlas-content hidden>
+
     <div class="prose">
       <p class="eyebrow">Research Atlas</p>
       <h1>A source-aware map of NPU life-science research</h1>
@@ -84,6 +123,9 @@
       <p class="small muted" data-atlas-scope-status aria-live="polite">
         Loading the Atlas dataset summary&hellip;
       </p>
+      <div class="btn-row">
+        <button class="btn" type="button" data-atlas-lock-button>Lock Atlas</button>
+      </div>
     </section>
 
     <form class="atlas-toolbar" data-atlas-form>
@@ -110,15 +152,6 @@
       </div>
       <button class="btn btn--primary atlas-submit" type="submit">Search</button>
     </form>
-
-    <noscript>
-      <div class="panel">
-        <p class="mb-0">
-          This page needs JavaScript to query the public Atlas API. The other research pages
-          remain available without scripting.
-        </p>
-      </div>
-    </noscript>
 
     <div class="atlas-layout">
       <section class="atlas-panel" aria-labelledby="atlas-results-title">
@@ -175,6 +208,7 @@
       </p>
     </div>
 
+    </div>
   </div>
 </main>
 

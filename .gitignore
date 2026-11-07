@@ -19,3 +19,7 @@ desktop.ini
 # Unpublished source assets — full-resolution originals stay local and are never
 # committed. Only the web-sized derivatives in assets/img/ are published.
 image/
+
+# Plaintext public snapshot. Only the encrypted derivative is published; the
+# password is never stored in the repository.
+assets/data/atlas-public.json
